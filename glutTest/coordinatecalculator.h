@@ -9,6 +9,15 @@
  * since qt don't allow in class array initialization,
  * we don't use const array. Note that we should not change STATIC
  * variables in the program except initialization.
+ * the STATIC_ORIGINPOS[3] is used to translate the objects' rotating
+ * point to origin.
+ * the ideal situation is
+ * glTranslatef(objectname_dynamic_translate[],...)
+ * glTranslatef(OBJECTNAME_STATIC_POSITION[],...)
+ * glRotatef(objectname_dynamic_rotate[],...);
+ * glRotatef(OBJECTNAME_STATIC_ROTATION[],...);
+ * glTranslatef(OBJECTNAME_STATIC_ORIGINPOS[],...[],...[]);
+ *
  * for dynamic variable, which is used to control the animation of
  * the robot, it should be like this:
  * objectname_dynamic_variableclass[3/4]
@@ -50,6 +59,7 @@ public:
     GLfloat NECK_STATIC_POSITION[3];
     GLfloat NECK_STATIC_ROTATION[4];
     GLfloat NECK_STATIC_SCALING[3];
+    GLfloat NECK_STATIC_ORIGINPOS[3];
     /*------------------*/
     /*dynamic coordinate means the relative
      * coordinates that control the animation
@@ -68,6 +78,7 @@ public:
     GLfloat BODY_STATIC_POSITION[3];
     GLfloat BODY_STATIC_ROTATION[4];
     GLfloat BODY_STATIC_SCALING[3];
+    GLfloat BODY_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat body_dynamic_translate[3];
@@ -80,6 +91,7 @@ public:
     GLfloat LEFTARM_STATIC_POSITION[3];
     GLfloat LEFTARM_STATIC_ROTATION[4];
     GLfloat LEFTARM_STATIC_SCALING[3];
+    GLfloat LEFTARM_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat leftarm_dynamic_translate[3];
@@ -92,6 +104,7 @@ public:
     GLfloat RIGHTARM_STATIC_POSITION[3];
     GLfloat RIGHTARM_STATIC_ROTATION[4];
     GLfloat RIGHTARM_STATIC_SCALING[3];
+    GLfloat RIGHTARM_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat rightarm_dynamic_translate[3];
@@ -104,6 +117,7 @@ public:
     GLfloat LEFTFOREARM_STATIC_POSITION[3];
     GLfloat LEFTFOREARM_STATIC_ROTATION[4];
     GLfloat LEFTFOREARM_STATIC_SCALING[3];
+    GLfloat LEFTFOREARM_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat leftforearm_dynamic_translate[3];
@@ -116,6 +130,7 @@ public:
     GLfloat RIGHTFOREARM_STATIC_POSITION[3];
     GLfloat RIGHTFOREARM_STATIC_ROTATION[4];
     GLfloat RIGHTFOREARM_STATIC_SCALING[3];
+    GLfloat RIGHTFOREARM_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat rightforearm_dynamic_translate[3];
@@ -128,6 +143,7 @@ public:
     GLfloat LEFTHAND_STATIC_POSITION[3];
     GLfloat LEFTHAND_STATIC_ROTATION[4];
     GLfloat LEFTHAND_STATIC_SCALING[3];
+    GLfloat LEFTHAND_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat lefthand_dynamic_translate[3];
@@ -140,6 +156,7 @@ public:
     GLfloat RIGHTHAND_STATIC_POSITION[3];
     GLfloat RIGHTHAND_STATIC_ROTATION[4];
     GLfloat RIGHTHAND_STATIC_SCALING[3];
+    GLfloat RIGHTHAND_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat righthand_dynamic_translate[3];
@@ -153,6 +170,7 @@ public:
     GLfloat LEFTFINGERS_STATIC_POSITION[3][3];
     GLfloat LEFTFINGERS_STATIC_ROTATION[3][4];
     GLfloat LEFTFINGERS_STATIC_SCALING[3][3];
+    GLfloat LEFTFINGERS_STATIC_ORIGINPOS[3][3];
     /*------------------------*/
     /* dynamic_variables*/
     GLfloat leftfingers_dynamic_translate[3][3];
@@ -166,6 +184,7 @@ public:
     GLfloat RIGHTFINGERS_STATIC_POSITION[3][3];
     GLfloat RIGHTFINGERS_STATIC_ROTATION[3][4];
     GLfloat RIGHTFINGERS_STATIC_SCALING[3][3];
+    GLfloat RIGHTFINGERS_STATIC_ORIGINPOS[3][3];
     /*------------------------*/
     /* dynamic_variables*/
     GLfloat rightfingers_dynamic_translate[3][3];
@@ -179,6 +198,7 @@ public:
     GLfloat LEFTFINGERKNUCKLES_STATIC_POSITION[3][3];
     GLfloat LEFTFINGERKNUCKLES_STATIC_ROTATION[3][4];
     GLfloat LEFTFINGERKNUCKLES_STATIC_SCALING[3][3];
+    GLfloat LEFTFINGERKNUCKLES_STATIC_ORIGINPOS[3][3];
     /*-----------------------*/
     /* dynamic variables*/
     GLfloat leftfingerknuckles_dynamic_translate[3][3];
@@ -192,6 +212,7 @@ public:
     GLfloat RIGHTFINGERKNUCKLES_STATIC_POSITION[3][3];
     GLfloat RIGHTFINGERKNUCKLES_STATIC_ROTATION[3][4];
     GLfloat RIGHTFINGERKNUCKLES_STATIC_SCALING[3][3];
+    GLfloat RIGHTFINGERKNUCKLES_STATIC_ORIGINPOS[3][3];
     /*-----------------------*/
     /* dynamic variables*/
     GLfloat rightfingerknuckles_dynamic_translate[3][3];
@@ -204,6 +225,7 @@ public:
     GLfloat WAIST_STATIC_POSITION[3];
     GLfloat WAIST_STATIC_ROTATION[4];
     GLfloat WAIST_STATIC_SCALING[3];
+    GLfloat WAIST_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables
      * note: to maximum simplify out program,
@@ -217,19 +239,20 @@ public:
     GLfloat LEFTTHIGH_STATIC_POSITION[3];
     GLfloat LEFTTHIGH_STATIC_ROTATION[4];
     GLfloat LEFTTHIGH_STATIC_SCALING[3];
+    GLfloat LEFTTHIGH_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat leftthigh_dynamic_translate[3];
     GLfloat leftthigh_dynamic_rotate[4];
     GLfloat leftthigh_dynamic_scale[3];
 //====================================
-    //TO-DO:Right thigh, two shanks, two feet
     /* right thigh coordinates*/
     /* STATIC_VARIABLES
      * the relative object for right thigh is waist*/
     GLfloat RIGHTTHIGH_STATIC_POSITION[3];
     GLfloat RIGHTTHIGH_STATIC_ROTATION[4];
     GLfloat RIGHTTHIGH_STATIC_SCALING[3];
+    GLfloat RIGHTTHIGH_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat rightthigh_dynamic_translate[3];
@@ -242,6 +265,7 @@ public:
     GLfloat LEFTSHANK_STATIC_POSITION[3];
     GLfloat LEFTSHANK_STATIC_ROTATION[4];
     GLfloat LEFTSHANK_STATIC_SCALING[3];
+    GLfloat LEFTSHANK_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat leftshank_dynamic_translate[3];
@@ -254,6 +278,7 @@ public:
     GLfloat RIGHTSHANK_STATIC_POSITION[3];
     GLfloat RIGHTSHANK_STATIC_ROTATION[4];
     GLfloat RIGHTSHANK_STATIC_SCALING[3];
+    GLfloat RIGHTSHANK_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat rightshank_dynamic_translate[3];
@@ -266,6 +291,7 @@ public:
     GLfloat LEFTFEET_STATIC_POSITION[3];
     GLfloat LEFTFEET_STATIC_ROTATION[4];
     GLfloat LEFTFEET_STATIC_SCALING[3];
+    GLfloat LEFTFEET_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat leftfeet_dynamic_translate[3];
@@ -278,6 +304,7 @@ public:
     GLfloat RIGHTFEET_STATIC_POSITION[3];
     GLfloat RIGHTFEET_STATIC_ROTATION[4];
     GLfloat RIGHTFEET_STATIC_SCALING[3];
+    GLfloat RIGHTFEET_STATIC_ORIGINPOS[3];
     /*--------------------*/
     /* dynamic_variables*/
     GLfloat rightfeet_dynamic_translate[3];
