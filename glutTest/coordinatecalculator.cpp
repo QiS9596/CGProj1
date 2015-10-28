@@ -143,10 +143,13 @@ void CoordinateCalculator::setStaticCoor(){
     BODY_STATIC_SCALING[0] = 2.0f;
     BODY_STATIC_SCALING[1] = 3.0f;
     BODY_STATIC_SCALING[2] = 1.5f;
+    BODY_STATIC_ORIGINPOS[0] = 0.0f;
+    BODY_STATIC_ORIGINPOS[1] = 0.0f;
+    BODY_STATIC_ORIGINPOS[2] = 0.0f;
 //========================================
     /*head(neck)*/
     NECK_STATIC_POSITION[0] = 0.0f;
-    NECK_STATIC_POSITION[1] = 2.0f;
+    NECK_STATIC_POSITION[1] = 1.0f;
     NECK_STATIC_POSITION[2] = 0.0f;
     NECK_STATIC_ROTATION[0] = 0.0f;
     NECK_STATIC_ROTATION[1] = 0.0f;
@@ -155,6 +158,9 @@ void CoordinateCalculator::setStaticCoor(){
     NECK_STATIC_SCALING[0] = 1.0f;
     NECK_STATIC_SCALING[1] = 1.0f;
     NECK_STATIC_SCALING[2] = 1.0f;
+    NECK_STATIC_ORIGINPOS[0] = 0.0f;
+    NECK_STATIC_ORIGINPOS[1] = 1.0f;
+    NECK_STATIC_ORIGINPOS[2] = 0.0f;
 //=======================================
     /*left arm*/
     LEFTARM_STATIC_POSITION[0] = 1.0f;
@@ -167,9 +173,12 @@ void CoordinateCalculator::setStaticCoor(){
     LEFTARM_STATIC_SCALING[0] = 0.5f;
     LEFTARM_STATIC_SCALING[1] = 2.0f;
     LEFTARM_STATIC_SCALING[2] = 0.8f;
+    LEFTARM_STATIC_ORIGINPOS[0] = 0.0f;
+    LEFTARM_STATIC_ORIGINPOS[1] = 1.0f;
+    LEFTARM_STATIC_ORIGINPOS[2] = 0.0f;
 //=======================================
     /*right arm*/
-    RIGHTARM_STATIC_POSITION[0] = -1.2f;
+    RIGHTARM_STATIC_POSITION[0] = -1.0f;
     RIGHTARM_STATIC_POSITION[1] = 1.0f;
     RIGHTARM_STATIC_POSITION[2] = 0.0f;
     RIGHTARM_STATIC_ROTATION[0] = 0.0f;
@@ -179,4 +188,7 @@ void CoordinateCalculator::setStaticCoor(){
     RIGHTARM_STATIC_SCALING[0] = 0.5f;
     RIGHTARM_STATIC_SCALING[1] = -1.6f;
     RIGHTARM_STATIC_SCALING[2] = 0.8f;
+    RIGHTARM_STATIC_ORIGINPOS[0] = -0.2f;
+    RIGHTARM_STATIC_ORIGINPOS[1] = 0.7f;
+    RIGHTARM_STATIC_ORIGINPOS[2] = 0.0f;
 }

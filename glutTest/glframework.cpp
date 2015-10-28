@@ -87,13 +87,8 @@ void glframework::timerEvent(QTimerEvent *)
 
 void glframework::draw_robot(){
     glPushMatrix();
-    glTranslatef(coordinates->body_dynamic_translate[0]
-                ,coordinates->body_dynamic_translate[1]
-                ,coordinates->body_dynamic_translate[2]);
-    glRotatef(coordinates->body_dynamic_rotate[0]
-             ,coordinates->body_dynamic_rotate[1]
-             ,coordinates->body_dynamic_rotate[2]
-             ,coordinates->body_dynamic_rotate[3]);
+
+
     draw_body();
     /* draw five things that connect to the body
      * in the following part
@@ -101,37 +96,16 @@ void glframework::draw_robot(){
     //============================================
         /*head*/
         glPushMatrix();
-        glTranslatef(coordinates->neck_dynamic_translate[0]
-                    ,coordinates->neck_dynamic_translate[1]
-                    ,coordinates->neck_dynamic_translate[2]);
-        glRotatef(coordinates->neck_dynamic_rotate[0]
-                 ,coordinates->neck_dynamic_rotate[1]
-                 ,coordinates->neck_dynamic_rotate[2]
-                 ,coordinates->neck_dynamic_rotate[3]);
         draw_head();
         glPopMatrix();
     //============================================
         /*left arm and it's children*/
         glPushMatrix();
-        glTranslatef(coordinates->leftarm_dynamic_translate[0]
-                    ,coordinates->leftarm_dynamic_translate[1]
-                    ,coordinates->leftarm_dynamic_translate[2]);
-        glRotatef(coordinates->leftarm_dynamic_rotate[0]
-                 ,coordinates->leftarm_dynamic_rotate[1]
-                 ,coordinates->leftarm_dynamic_rotate[2]
-                 ,coordinates->leftarm_dynamic_rotate[3]);
         draw_leftarm(); //Note we finish drawing children in this function
         glPopMatrix();
     //============================================
-        /*left arm and it's children*/
+        /*right arm and it's children*/
         glPushMatrix();
-        glTranslatef(coordinates->rightarm_dynamic_translate[0]
-                    ,coordinates->rightarm_dynamic_translate[1]
-                    ,coordinates->rightarm_dynamic_translate[2]);
-        glRotatef(coordinates->rightarm_dynamic_rotate[0]
-                 ,coordinates->rightarm_dynamic_rotate[1]
-                 ,coordinates->rightarm_dynamic_rotate[2]
-                 ,coordinates->rightarm_dynamic_rotate[3]);
         draw_rightarm(); //Note we finish drawing children in this function
         glPopMatrix();
     //============================================
@@ -144,10 +118,20 @@ void glframework::draw_body(){
     glTranslatef(coordinates->BODY_STATIC_POSITION[0],
                  coordinates->BODY_STATIC_POSITION[1],
                  coordinates->BODY_STATIC_POSITION[2]);
+    glTranslatef(coordinates->body_dynamic_translate[0]
+                ,coordinates->body_dynamic_translate[1]
+                ,coordinates->body_dynamic_translate[2]);
     glRotatef(coordinates->BODY_STATIC_ROTATION[0],
               coordinates->BODY_STATIC_ROTATION[1],
               coordinates->BODY_STATIC_ROTATION[2],
               coordinates->BODY_STATIC_ROTATION[3]);
+    glRotatef(coordinates->body_dynamic_rotate[0]
+             ,coordinates->body_dynamic_rotate[1]
+             ,coordinates->body_dynamic_rotate[2]
+             ,coordinates->body_dynamic_rotate[3]);
+    glTranslatef(coordinates->BODY_STATIC_ORIGINPOS[0],
+                 coordinates->BODY_STATIC_ORIGINPOS[1],
+                 coordinates->BODY_STATIC_ORIGINPOS[2]);
     glPushMatrix();
     glScalef(coordinates->BODY_STATIC_SCALING[0],
              coordinates->BODY_STATIC_SCALING[1],
@@ -162,10 +146,20 @@ void glframework::draw_head(){
     glTranslatef(coordinates->NECK_STATIC_POSITION[0],
                  coordinates->NECK_STATIC_POSITION[1],
                  coordinates->NECK_STATIC_POSITION[2]);
+    glTranslatef(coordinates->neck_dynamic_translate[0]
+                ,coordinates->neck_dynamic_translate[1]
+                ,coordinates->neck_dynamic_translate[2]);
     glRotatef(coordinates->NECK_STATIC_ROTATION[0],
               coordinates->NECK_STATIC_ROTATION[1],
               coordinates->NECK_STATIC_ROTATION[2],
               coordinates->NECK_STATIC_ROTATION[3]);
+    glRotatef(coordinates->neck_dynamic_rotate[0]
+             ,coordinates->neck_dynamic_rotate[1]
+             ,coordinates->neck_dynamic_rotate[2]
+             ,coordinates->neck_dynamic_rotate[3]);
+    glTranslatef(coordinates->NECK_STATIC_ORIGINPOS[0],
+                 coordinates->NECK_STATIC_ORIGINPOS[1],
+                 coordinates->NECK_STATIC_ORIGINPOS[2]);
     glPushMatrix();
     glScalef(coordinates->NECK_STATIC_SCALING[0],
              coordinates->NECK_STATIC_SCALING[1],
@@ -180,10 +174,20 @@ void glframework::draw_leftarm(){
     glTranslatef(coordinates->LEFTARM_STATIC_POSITION[0],
                  coordinates->LEFTARM_STATIC_POSITION[1],
                  coordinates->LEFTARM_STATIC_POSITION[2]);
+    glTranslatef(coordinates->leftarm_dynamic_translate[0]
+                ,coordinates->leftarm_dynamic_translate[1]
+                ,coordinates->leftarm_dynamic_translate[2]);
     glRotatef(coordinates->LEFTARM_STATIC_ROTATION[0],
               coordinates->LEFTARM_STATIC_ROTATION[1],
               coordinates->LEFTARM_STATIC_ROTATION[2],
               coordinates->LEFTARM_STATIC_ROTATION[3]);
+    glRotatef(coordinates->leftarm_dynamic_rotate[0]
+             ,coordinates->leftarm_dynamic_rotate[1]
+             ,coordinates->leftarm_dynamic_rotate[2]
+             ,coordinates->leftarm_dynamic_rotate[3]);
+    glTranslatef(coordinates->LEFTARM_STATIC_ORIGINPOS[0],
+                 coordinates->LEFTARM_STATIC_ORIGINPOS[1],
+                 coordinates->LEFTARM_STATIC_ORIGINPOS[2]);
     glPushMatrix();
     glScalef(coordinates->LEFTARM_STATIC_SCALING[0],
              coordinates->LEFTARM_STATIC_SCALING[1],
@@ -199,10 +203,20 @@ void glframework::draw_rightarm(){
     glTranslatef(coordinates->RIGHTARM_STATIC_POSITION[0],
                  coordinates->RIGHTARM_STATIC_POSITION[1],
                  coordinates->RIGHTARM_STATIC_POSITION[2]);
+    glTranslatef(coordinates->rightarm_dynamic_translate[0]
+                ,coordinates->rightarm_dynamic_translate[1]
+                ,coordinates->rightarm_dynamic_translate[2]);
     glRotatef(coordinates->RIGHTARM_STATIC_ROTATION[0],
               coordinates->RIGHTARM_STATIC_ROTATION[1],
               coordinates->RIGHTARM_STATIC_ROTATION[2],
               coordinates->RIGHTARM_STATIC_ROTATION[3]);
+    glRotatef(coordinates->rightarm_dynamic_rotate[0]
+             ,coordinates->rightarm_dynamic_rotate[1]
+             ,coordinates->rightarm_dynamic_rotate[2]
+             ,coordinates->rightarm_dynamic_rotate[3]);
+    glTranslatef(coordinates->RIGHTARM_STATIC_ORIGINPOS[0],
+                 coordinates->RIGHTARM_STATIC_ORIGINPOS[1],
+                 coordinates->RIGHTARM_STATIC_ORIGINPOS[2]);
     glPushMatrix();
     glScalef(coordinates->RIGHTARM_STATIC_SCALING[0],
              coordinates->RIGHTARM_STATIC_SCALING[1],
