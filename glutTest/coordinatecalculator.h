@@ -1,5 +1,6 @@
 #ifndef COORDINATECALCULATOR_H
 #define COORDINATECALCULATOR_H
+#include <GL/glut.h>
 /*Variable Naming rules:
  * for static variable, which should not change during the runtime
  * it should be like this:
@@ -48,7 +49,7 @@ public:
      */
     GLfloat NECK_STATIC_POSITION[3];
     GLfloat NECK_STATIC_ROTATION[4];
-    GLfloat Neck_STATIC_SCALING[3];
+    GLfloat NECK_STATIC_SCALING[3];
     /*------------------*/
     /*dynamic coordinate means the relative
      * coordinates that control the animation
@@ -288,8 +289,8 @@ private:
     void initDefaultCoordinates();  //called when first built coordinate calculator
     //call function standby() and setStaticCoor()
     void setStaticCoor();
-signals:
-public slots:
+//signals:
+//public slots:
 };
 
 #endif // COORDINATECALCULATOR_H

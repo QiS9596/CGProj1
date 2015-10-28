@@ -5,6 +5,7 @@
 #include <QOpenGLWidget>
 #include <QBasicTimer>
 #include <coordinatecalculator.h>
+#include <iostream>
 class glframework : public QOpenGLWidget , protected QOpenGLFunctions_1_1
 {
     Q_OBJECT
@@ -13,14 +14,18 @@ public:
     ~glframework();
     void initializeGL();
     void paintGL();
-    void reasizeGL(int w,int h);
+    void resizeGL(int w,int h);
+    double eyex = 0,eyey = 0, eyez = 0, centerx = 0, centery = 0, centerz = 0;
 protected:
     void timerEvent(QTimerEvent *e);
 private:
-    CoordinateCalculator coordinates;
+    CoordinateCalculator * coordinates;
     QBasicTimer timer;
     void draw_robot();
     void draw_body();
+    void draw_head();
+    void draw_leftarm();//draw left arm and it's children
+    void draw_rightarm();
 signals:
 
 public slots:

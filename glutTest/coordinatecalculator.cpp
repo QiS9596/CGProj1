@@ -2,7 +2,7 @@
 
 CoordinateCalculator::CoordinateCalculator()
 {
-
+    initDefaultCoordinates();
 }
 
 void CoordinateCalculator::standby(){
@@ -108,13 +108,13 @@ void CoordinateCalculator::standby(){
         leftforearm_dynamic_rotate[index] = 0;
         rightforearm_dynamic_rotate[index] = 0;
         lefthand_dynamic_rotate[index] = 0;
-        righthand_dynamic rotate[index] = 0;
+        righthand_dynamic_rotate[index] = 0;
         /*finger and finger-knuckles*/
         for(int fingerNumber = 0; fingerNumber < 3; fingerNumber++){
             leftfingers_dynamic_rotate[fingerNumber][index] = 0;
             rightfingers_dynamic_rotate[fingerNumber][index] = 0;
             leftfingerknuckles_dynamic_rotate[fingerNumber][index] = 0;
-            rightfingerknuckles_dynamic rotate[fingerNumber][index] = 0;
+            rightfingerknuckles_dynamic_rotate[fingerNumber][index] = 0;
         }
         waist_dynamic_rotate[index] = 0;
         leftthigh_dynamic_rotate[index] = 0;
@@ -132,5 +132,51 @@ void CoordinateCalculator::initDefaultCoordinates(){
 }
 
 void CoordinateCalculator::setStaticCoor(){
-
+    /*body*/
+    BODY_STATIC_POSITION[0] = 0.0f;
+    BODY_STATIC_POSITION[1] = 0.0f;
+    BODY_STATIC_POSITION[2] = 0.0f;
+    BODY_STATIC_ROTATION[0] = 0.0f;
+    BODY_STATIC_ROTATION[1] = 0.0f;
+    BODY_STATIC_ROTATION[2] = 0.0f;
+    BODY_STATIC_ROTATION[3] = 0.0f;
+    BODY_STATIC_SCALING[0] = 2.0f;
+    BODY_STATIC_SCALING[1] = 3.0f;
+    BODY_STATIC_SCALING[2] = 1.5f;
+//========================================
+    /*head(neck)*/
+    NECK_STATIC_POSITION[0] = 0.0f;
+    NECK_STATIC_POSITION[1] = 2.0f;
+    NECK_STATIC_POSITION[2] = 0.0f;
+    NECK_STATIC_ROTATION[0] = 0.0f;
+    NECK_STATIC_ROTATION[1] = 0.0f;
+    NECK_STATIC_ROTATION[2] = 0.0f;
+    NECK_STATIC_ROTATION[3] = 0.0f;
+    NECK_STATIC_SCALING[0] = 1.0f;
+    NECK_STATIC_SCALING[1] = 1.0f;
+    NECK_STATIC_SCALING[2] = 1.0f;
+//=======================================
+    /*left arm*/
+    LEFTARM_STATIC_POSITION[0] = 1.0f;
+    LEFTARM_STATIC_POSITION[1] = 0.9f;
+    LEFTARM_STATIC_POSITION[2] = 0.0f;
+    LEFTARM_STATIC_ROTATION[0] = 0.0f;
+    LEFTARM_STATIC_ROTATION[1] = 0.0f;
+    LEFTARM_STATIC_ROTATION[2] = 0.0f;
+    LEFTARM_STATIC_ROTATION[3] = 0.0f;
+    LEFTARM_STATIC_SCALING[0] = 0.5f;
+    LEFTARM_STATIC_SCALING[1] = 2.0f;
+    LEFTARM_STATIC_SCALING[2] = 0.8f;
+//=======================================
+    /*right arm*/
+    RIGHTARM_STATIC_POSITION[0] = -1.2f;
+    RIGHTARM_STATIC_POSITION[1] = 1.0f;
+    RIGHTARM_STATIC_POSITION[2] = 0.0f;
+    RIGHTARM_STATIC_ROTATION[0] = 0.0f;
+    RIGHTARM_STATIC_ROTATION[1] = 1.0f;
+    RIGHTARM_STATIC_ROTATION[2] = 0.0f;
+    RIGHTARM_STATIC_ROTATION[3] = 0.0f;
+    RIGHTARM_STATIC_SCALING[0] = 0.5f;
+    RIGHTARM_STATIC_SCALING[1] = -1.6f;
+    RIGHTARM_STATIC_SCALING[2] = 0.8f;
 }
