@@ -1,0 +1,1 @@
+請將freeglut/bin/freeglut.dll丟入建置資料夾或設置環境變數！
