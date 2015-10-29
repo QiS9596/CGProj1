@@ -80,8 +80,8 @@ void glframework::resizeGL(int w,int h)
 }
 void glframework::timerEvent(QTimerEvent *)
 {
-    coordinates->rightarm_dynamic_rotate[0] += 0.08;
-    coordinates->rightarm_dynamic_rotate[1] = 1;
+    coordinates->lefthand_dynamic_rotate[0] += 0.08;
+    coordinates->lefthand_dynamic_rotate[1] = 1;
     this->update();
 }
 
@@ -192,14 +192,85 @@ void glframework::draw_leftarm(){
     glScalef(coordinates->LEFTARM_STATIC_SCALING[0],
              coordinates->LEFTARM_STATIC_SCALING[1],
              coordinates->LEFTARM_STATIC_SCALING[2]);
+
     glutSolidCube(1.0);
     glPopMatrix();
+    draw_leftforearm();
     //TO-DO draw fore arm/hand/fingers/fingerknuckles here
 
 }
 
-void glframework::draw_rightarm(){
+void glframework::draw_leftforearm(){
+    glPushMatrix();//draw joint
+    glTranslatef(coordinates->LEFTFOREARM_STATIC_POSITION[0],
+            coordinates->LEFTFOREARM_STATIC_POSITION[1]-0.1,
+            coordinates->LEFTFOREARM_STATIC_POSITION[2]);
+    glutSolidSphere(0.5,30,30);
+    glPopMatrix();
+
+    glTranslatef(coordinates->LEFTFOREARM_STATIC_POSITION[0],
+                 coordinates->LEFTFOREARM_STATIC_POSITION[1],
+                 coordinates->LEFTFOREARM_STATIC_POSITION[2]);
+    glTranslatef(coordinates->leftforearm_dynamic_translate[0]
+                ,coordinates->leftforearm_dynamic_translate[1]
+                ,coordinates->leftforearm_dynamic_translate[2]);
+    glRotatef(coordinates->LEFTFOREARM_STATIC_ROTATION[0],
+              coordinates->LEFTFOREARM_STATIC_ROTATION[1],
+              coordinates->LEFTFOREARM_STATIC_ROTATION[2],
+              coordinates->LEFTFOREARM_STATIC_ROTATION[3]);
+    glRotatef(coordinates->leftforearm_dynamic_rotate[0]
+             ,coordinates->leftforearm_dynamic_rotate[1]
+             ,coordinates->leftforearm_dynamic_rotate[2]
+             ,coordinates->leftforearm_dynamic_rotate[3]);
+    glTranslatef(coordinates->LEFTFOREARM_STATIC_ORIGINPOS[0],
+                 coordinates->LEFTFOREARM_STATIC_ORIGINPOS[1],
+                 coordinates->LEFTFOREARM_STATIC_ORIGINPOS[2]);
     glPushMatrix();
+    glScalef(coordinates->LEFTFOREARM_STATIC_SCALING[0],
+             coordinates->LEFTFOREARM_STATIC_SCALING[1],
+             coordinates->LEFTFOREARM_STATIC_SCALING[2]);
+    glColor3f(0.0f,1.0f,0.0f);
+    glutSolidCube(1.0);
+    glPopMatrix();
+    draw_lefthand();
+}
+
+void glframework::draw_lefthand(){
+    glPushMatrix();//draw joint
+    glTranslatef(coordinates->LEFTHAND_STATIC_POSITION[0],
+            coordinates->LEFTHAND_STATIC_POSITION[1]-0.05,
+            coordinates->LEFTHAND_STATIC_POSITION[2]);
+    glutSolidSphere(0.35,30,30);
+    glPopMatrix();
+
+    glTranslatef(coordinates->LEFTHAND_STATIC_POSITION[0],
+                 coordinates->LEFTHAND_STATIC_POSITION[1],
+                 coordinates->LEFTHAND_STATIC_POSITION[2]);
+    glTranslatef(coordinates->lefthand_dynamic_translate[0]
+                ,coordinates->lefthand_dynamic_translate[1]
+                ,coordinates->lefthand_dynamic_translate[2]);
+    glRotatef(coordinates->LEFTHAND_STATIC_ROTATION[0],
+              coordinates->LEFTHAND_STATIC_ROTATION[1],
+              coordinates->LEFTHAND_STATIC_ROTATION[2],
+              coordinates->LEFTHAND_STATIC_ROTATION[3]);
+    glRotatef(coordinates->lefthand_dynamic_rotate[0]
+             ,coordinates->lefthand_dynamic_rotate[1]
+             ,coordinates->lefthand_dynamic_rotate[2]
+             ,coordinates->lefthand_dynamic_rotate[3]);
+    glTranslatef(coordinates->LEFTHAND_STATIC_ORIGINPOS[0],
+                 coordinates->LEFTHAND_STATIC_ORIGINPOS[1],
+                 coordinates->LEFTHAND_STATIC_ORIGINPOS[2]);
+    glPushMatrix();
+    glScalef(coordinates->LEFTHAND_STATIC_SCALING[0],
+             coordinates->LEFTHAND_STATIC_SCALING[1],
+             coordinates->LEFTHAND_STATIC_SCALING[2]);
+    glColor3f(0.0f,1.0f,0.0f);
+    glutSolidCube(1.0);
+    glPopMatrix();
+}
+
+void glframework::draw_rightarm(){
+
     glTranslatef(coordinates->RIGHTARM_STATIC_POSITION[0],
                  coordinates->RIGHTARM_STATIC_POSITION[1],
                  coordinates->RIGHTARM_STATIC_POSITION[2]);
@@ -223,6 +294,41 @@ void glframework::draw_rightarm(){
              coordinates->RIGHTARM_STATIC_SCALING[2]);
     glutSolidCube(1.0);
     glPopMatrix();
+    draw_rightforearm();
     //TO-DO draw fore arm/hand/fingers/fingerknuckles here
+
+}
+
+void glframework::draw_rightforearm(){
+    glPushMatrix();//draw joint
+    glTranslatef(coordinates->RIGHTFOREARM_STATIC_POSITION[0],
+            coordinates->RIGHTFOREARM_STATIC_POSITION[1]-0.1,
+            coordinates->RIGHTFOREARM_STATIC_POSITION[2]);
+    glutSolidSphere(0.5,30,30);
+    glPopMatrix();
+
+    glTranslatef(coordinates->RIGHTFOREARM_STATIC_POSITION[0],
+                 coordinates->RIGHTFOREARM_STATIC_POSITION[1],
+                 coordinates->RIGHTFOREARM_STATIC_POSITION[2]);
+    glTranslatef(coordinates->rightforearm_dynamic_translate[0]
+                ,coordinates->rightforearm_dynamic_translate[1]
+                ,coordinates->rightforearm_dynamic_translate[2]);
+    glRotatef(coordinates->RIGHTFOREARM_STATIC_ROTATION[0],
+              coordinates->RIGHTFOREARM_STATIC_ROTATION[1],
+              coordinates->RIGHTFOREARM_STATIC_ROTATION[2],
+              coordinates->RIGHTFOREARM_STATIC_ROTATION[3]);
+    glRotatef(coordinates->rightforearm_dynamic_rotate[0]
+             ,coordinates->rightforearm_dynamic_rotate[1]
+             ,coordinates->rightforearm_dynamic_rotate[2]
+             ,coordinates->rightforearm_dynamic_rotate[3]);
+    glTranslatef(coordinates->RIGHTFOREARM_STATIC_ORIGINPOS[0],
+                 coordinates->RIGHTFOREARM_STATIC_ORIGINPOS[1],
+                 coordinates->RIGHTFOREARM_STATIC_ORIGINPOS[2]);
+    glPushMatrix();
+    glScalef(coordinates->RIGHTFOREARM_STATIC_SCALING[0],
+             coordinates->RIGHTFOREARM_STATIC_SCALING[1],
+             coordinates->RIGHTFOREARM_STATIC_SCALING[2]);
+    glColor3f(0.0f,1.0f,0.0f);
+    glutSolidCube(1.0);
     glPopMatrix();
 }

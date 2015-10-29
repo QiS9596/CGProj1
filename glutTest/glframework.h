@@ -24,8 +24,15 @@ private:
     void draw_robot();
     void draw_body();
     void draw_head();
+    //============================================
     void draw_leftarm();//draw left arm and it's children
+    void draw_leftforearm();//draw leftforearm and it's children
+    //called in function draw_leftarm();
+    void draw_lefthand();//draw left hand, called in
+    //function draw_leftforearm()
+    //============================================
     void draw_rightarm();
+    void draw_rightforearm();
 signals:
 
 public slots:
