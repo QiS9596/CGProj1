@@ -30,6 +30,7 @@ private:
     //called in function draw_leftarm();
     void draw_lefthand();//draw left hand, called in
     //function draw_leftforearm()
+    void draw_leftfingers();
     //============================================
     void draw_rightarm();
     void draw_rightforearm();
