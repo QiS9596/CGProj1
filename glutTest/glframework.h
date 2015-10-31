@@ -15,11 +15,11 @@ public:
     void initializeGL();
     void paintGL();
     void resizeGL(int w,int h);
+    CoordinateCalculator * coordinates;
     double eyex = 0,eyey = 0, eyez = 0, centerx = 0, centery = 0, centerz = 0;
 protected:
     void timerEvent(QTimerEvent *e);
 private:
-    CoordinateCalculator * coordinates;
     QBasicTimer timer;
     void draw_robot();
     void draw_body();
@@ -31,9 +31,13 @@ private:
     void draw_lefthand();//draw left hand, called in
     //function draw_leftforearm()
     void draw_leftfingers();
+    void draw_leftfingerknuckles(int index);
     //============================================
     void draw_rightarm();
     void draw_rightforearm();
+    void draw_righthand();
+    void draw_rightfingers();
+    void draw_rightfingerknuckles(int index);
 signals:
 
 public slots:

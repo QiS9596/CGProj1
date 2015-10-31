@@ -1,6 +1,7 @@
 #ifndef COORDINATECALCULATOR_H
 #define COORDINATECALCULATOR_H
 #include <GL/glut.h>
+#include <iostream>
 /*Variable Naming rules:
  * for static variable, which should not change during the runtime
  * it should be like this:
@@ -41,13 +42,16 @@
  * -----===============----=============------------------------------
  *
  */
-
-
+const int STANDBY_STATE = 0;
+const int MOVE_HAND_STATE = 1;
 
 class CoordinateCalculator
 {
 public:
+    int state;
+
     CoordinateCalculator();
+    void updateDynamicCoordinate();
 //==================================
     /*neck coordinates*/
     /*static coordinate means the relative
@@ -316,6 +320,7 @@ private:
     void initDefaultCoordinates();  //called when first built coordinate calculator
     //call function standby() and setStaticCoor()
     void setStaticCoor();
+    void moveHand();
 //signals:
 //public slots:
 };

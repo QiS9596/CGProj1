@@ -3,8 +3,21 @@
 CoordinateCalculator::CoordinateCalculator()
 {
     initDefaultCoordinates();
+    state = STANDBY_STATE;
 }
 
+void CoordinateCalculator::updateDynamicCoordinate(){
+    switch(state){
+    case STANDBY_STATE:
+        standby();
+        break;
+    case MOVE_HAND_STATE:
+        moveHand();
+        break;
+    default:
+        standby();
+    }
+}
 void CoordinateCalculator::standby(){
     /* stand by function is used to set all of
      * the dynamic variables to zero/one
@@ -249,7 +262,23 @@ void CoordinateCalculator::setStaticCoor(){
     LEFTFINGERS_STATIC_ORIGINPOS[2][0] = 0.0f;
     LEFTFINGERS_STATIC_ORIGINPOS[2][1] = 0.2f;
     LEFTFINGERS_STATIC_ORIGINPOS[2][2] = 0.0f;
-
+    /*+++++++++++++++++++++++++++++++++++++++*/
+    /*left finger-knuckles*/
+    for(int index = 0; index < 3; index ++){
+        LEFTFINGERKNUCKLES_STATIC_POSITION[index][0] = 0.0f;
+        LEFTFINGERKNUCKLES_STATIC_POSITION[index][1] = 0.25f;
+        LEFTFINGERKNUCKLES_STATIC_POSITION[index][2] = 0.0f;
+        LEFTFINGERKNUCKLES_STATIC_ROTATION[index][0] = 0.0f;
+        LEFTFINGERKNUCKLES_STATIC_ROTATION[index][1] = 0.0f;
+        LEFTFINGERKNUCKLES_STATIC_ROTATION[index][2] = 0.0f;
+        LEFTFINGERKNUCKLES_STATIC_ROTATION[index][3] = 0.0f;
+        LEFTFINGERKNUCKLES_STATIC_SCALING[index][0] = 0.15;
+        LEFTFINGERKNUCKLES_STATIC_SCALING[index][1] = 0.2;
+        LEFTFINGERKNUCKLES_STATIC_SCALING[index][2] = 0.15;
+        LEFTFINGERKNUCKLES_STATIC_ORIGINPOS[index][0] = 0.0f;
+        LEFTFINGERKNUCKLES_STATIC_ORIGINPOS[index][1] = 0.1f;
+        LEFTFINGERKNUCKLES_STATIC_ORIGINPOS[index][2] = 0.0f;
+    }
 //=======================================
     /*right arm*/
     RIGHTARM_STATIC_POSITION[0] = -1.0f;
@@ -279,4 +308,88 @@ void CoordinateCalculator::setStaticCoor(){
     RIGHTFOREARM_STATIC_ORIGINPOS[0] = 0.0f;
     RIGHTFOREARM_STATIC_ORIGINPOS[1] = 0.7f;
     RIGHTFOREARM_STATIC_ORIGINPOS[2] = 0.0f;
+    /*right hand*/
+    RIGHTHAND_STATIC_POSITION[0] = 0.0f;
+    RIGHTHAND_STATIC_POSITION[1] = 0.6f;
+    RIGHTHAND_STATIC_POSITION[2] = 0.0f;
+    RIGHTHAND_STATIC_ROTATION[0] = 0.0;
+    RIGHTHAND_STATIC_ROTATION[1] = 1.0f;
+    RIGHTHAND_STATIC_ROTATION[2] = 0.0f;
+    RIGHTHAND_STATIC_ROTATION[3] = 0.0f;
+    RIGHTHAND_STATIC_SCALING[0] = 0.2f;
+    RIGHTHAND_STATIC_SCALING[1] = 0.4f;
+    RIGHTHAND_STATIC_SCALING[2] = 0.6f;
+    RIGHTHAND_STATIC_ORIGINPOS[0] = 0.0f;
+    RIGHTHAND_STATIC_ORIGINPOS[1] = 0.1f;
+    RIGHTHAND_STATIC_ORIGINPOS[2] = 0.0f;
+    /*left fingers*/
+    /*left finger 1*/
+    RIGHTFINGERS_STATIC_POSITION[0][0] = 0.0f;
+    RIGHTFINGERS_STATIC_POSITION[0][1] = 0.15f;
+    RIGHTFINGERS_STATIC_POSITION[0][2] = 0.33f;
+    RIGHTFINGERS_STATIC_ROTATION[0][0] = 15.0f;
+    RIGHTFINGERS_STATIC_ROTATION[0][1] = 1.0f;
+    RIGHTFINGERS_STATIC_ROTATION[0][2] = 0.0f;
+    RIGHTFINGERS_STATIC_ROTATION[0][3] = 0.0f;
+    RIGHTFINGERS_STATIC_SCALING[0][0] = 0.15;
+    RIGHTFINGERS_STATIC_SCALING[0][1] = 0.4;
+    RIGHTFINGERS_STATIC_SCALING[0][2] = 0.15;
+    RIGHTFINGERS_STATIC_ORIGINPOS[0][0] = 0.0f;
+    RIGHTFINGERS_STATIC_ORIGINPOS[0][1] = 0.2f;
+    RIGHTFINGERS_STATIC_ORIGINPOS[0][2] = 0.0f;
+    /*---------------------------------------*/
+    /*left finger 2*/
+    RIGHTFINGERS_STATIC_POSITION[1][0] = 0.0f;
+    RIGHTFINGERS_STATIC_POSITION[1][1] = 0.25f;
+    RIGHTFINGERS_STATIC_POSITION[1][2] = 0.10f;
+    RIGHTFINGERS_STATIC_ROTATION[1][0] = 0.0f;
+    RIGHTFINGERS_STATIC_ROTATION[1][1] = 0.0f;
+    RIGHTFINGERS_STATIC_ROTATION[1][2] = 0.0f;
+    RIGHTFINGERS_STATIC_ROTATION[1][3] = 0.0f;
+    RIGHTFINGERS_STATIC_SCALING[1][0] = 0.15;
+    RIGHTFINGERS_STATIC_SCALING[1][1] = 0.4;
+    RIGHTFINGERS_STATIC_SCALING[1][2] = 0.15;
+    RIGHTFINGERS_STATIC_ORIGINPOS[1][0] = 0.0f;
+    RIGHTFINGERS_STATIC_ORIGINPOS[1][1] = 0.2f;
+    RIGHTFINGERS_STATIC_ORIGINPOS[1][2] = 0.0f;
+    /*---------------------------------------*/
+    /*right finger 3*/
+    RIGHTFINGERS_STATIC_POSITION[2][0] = 0.0f;
+    RIGHTFINGERS_STATIC_POSITION[2][1] = 0.25f;
+    RIGHTFINGERS_STATIC_POSITION[2][2] = -0.2f;
+    RIGHTFINGERS_STATIC_ROTATION[2][0] = 0.0f;
+    RIGHTFINGERS_STATIC_ROTATION[2][1] = 0.0f;
+    RIGHTFINGERS_STATIC_ROTATION[2][2] = 0.0f;
+    RIGHTFINGERS_STATIC_ROTATION[2][3] = 0.0f;
+    RIGHTFINGERS_STATIC_SCALING[2][0] = 0.15;
+    RIGHTFINGERS_STATIC_SCALING[2][1] = 0.4;
+    RIGHTFINGERS_STATIC_SCALING[2][2] = 0.15;
+    RIGHTFINGERS_STATIC_ORIGINPOS[2][0] = 0.0f;
+    RIGHTFINGERS_STATIC_ORIGINPOS[2][1] = 0.2f;
+    RIGHTFINGERS_STATIC_ORIGINPOS[2][2] = 0.0f;
+    /*+++++++++++++++++++++++++++++++++++++++*/
+    /*right finger-knuckles*/
+    for(int index = 0; index < 3; index ++){
+        RIGHTFINGERKNUCKLES_STATIC_POSITION[index][0] = 0.0f;
+        RIGHTFINGERKNUCKLES_STATIC_POSITION[index][1] = 0.25f;
+        RIGHTFINGERKNUCKLES_STATIC_POSITION[index][2] = 0.0f;
+        RIGHTFINGERKNUCKLES_STATIC_ROTATION[index][0] = 0.0f;
+        RIGHTFINGERKNUCKLES_STATIC_ROTATION[index][1] = 0.0f;
+        RIGHTFINGERKNUCKLES_STATIC_ROTATION[index][2] = 0.0f;
+        RIGHTFINGERKNUCKLES_STATIC_ROTATION[index][3] = 0.0f;
+        RIGHTFINGERKNUCKLES_STATIC_SCALING[index][0] = 0.15;
+        RIGHTFINGERKNUCKLES_STATIC_SCALING[index][1] = 0.2;
+        RIGHTFINGERKNUCKLES_STATIC_SCALING[index][2] = 0.15;
+        RIGHTFINGERKNUCKLES_STATIC_ORIGINPOS[index][0] = 0.0f;
+        RIGHTFINGERKNUCKLES_STATIC_ORIGINPOS[index][1] = 0.1f;
+        RIGHTFINGERKNUCKLES_STATIC_ORIGINPOS[index][2] = 0.0f;
+    }
+
+}
+
+void CoordinateCalculator::moveHand(){
+    std::cout << "move hand function called" << std::endl;
+    rightarm_dynamic_rotate[1] = 1.0f;
+    if(rightarm_dynamic_rotate[0] < 90)
+        rightarm_dynamic_rotate[0] += 1.0f;
 }

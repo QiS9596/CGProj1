@@ -41,6 +41,10 @@ private slots:
 
     void on_centerzMinus_clicked();
 
+    void on_button_Standby_clicked();
+
+    void on_button_Movehand_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -84,3 +84,16 @@ void MainWindow::on_centerzMinus_clicked()
     ui->widget_2->centerz--;
     ui->widget_2->update();
 }
+
+void MainWindow::on_button_Standby_clicked()
+{
+    ui->widget_2->coordinates->state = 0;//standby state
+    ui->widget_2->update();
+}
+
+void MainWindow::on_button_Movehand_clicked()
+{
+    ui->widget_2->coordinates->standby();
+    ui->widget_2->coordinates->state = 1;// move hand state
+    ui->widget_2->update();
+}
