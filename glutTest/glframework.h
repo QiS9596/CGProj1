@@ -38,6 +38,17 @@ private:
     void draw_righthand();
     void draw_rightfingers();
     void draw_rightfingerknuckles(int index);
+    //============================================
+    void draw_waist();
+    /*left leg*/
+    void draw_leftthigh();
+    void draw_leftshank();
+    void draw_leftfeet();
+    /*right leg*/
+    void draw_rightthigh();
+    void draw_rightshank();
+    void draw_rightfeet();
+
 signals:
 
 public slots:

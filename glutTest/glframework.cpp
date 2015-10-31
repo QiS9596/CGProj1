@@ -77,6 +77,7 @@ void glframework::resizeGL(int w,int h)
 void glframework::timerEvent(QTimerEvent *)
 {
     coordinates->updateDynamicCoordinate();
+
 //    cout
     this->update();
 }
@@ -103,6 +104,17 @@ void glframework::draw_robot(){
         draw_rightarm(); //Note we finish drawing children in this function
         glPopMatrix();
     //============================================
+        /*waist and legs*/
+        glPushMatrix();
+        draw_waist();
+            glPushMatrix();
+            draw_leftthigh();
+            glPopMatrix();
+            glPushMatrix();
+            draw_rightthigh();
+            glPopMatrix();
+        glPopMatrix();
+
     glPopMatrix();
 }
 
@@ -515,4 +527,242 @@ void glframework::draw_rightfingerknuckles(int index){
     glColor3f(0.0f,1.0f,0.0f);
     glutSolidCube(1.0);
     glPopMatrix();
+}
+
+void glframework::draw_waist(){
+    glTranslatef(coordinates->WAIST_STATIC_POSITION[0],
+                 coordinates->WAIST_STATIC_POSITION[1],
+                 coordinates->WAIST_STATIC_POSITION[2]);
+    glRotatef(coordinates->WAIST_STATIC_ROTATION[0],
+              coordinates->WAIST_STATIC_ROTATION[1],
+              coordinates->WAIST_STATIC_ROTATION[2],
+              coordinates->WAIST_STATIC_ROTATION[3]);
+    glRotatef(coordinates->waist_dynamic_rotate[0]
+             ,coordinates->waist_dynamic_rotate[1]
+             ,coordinates->waist_dynamic_rotate[2]
+             ,coordinates->waist_dynamic_rotate[3]);
+    glTranslatef(coordinates->WAIST_STATIC_ORIGINPOS[0],
+                 coordinates->WAIST_STATIC_ORIGINPOS[1],
+                 coordinates->WAIST_STATIC_ORIGINPOS[2]);
+    glPushMatrix();
+    glScalef(coordinates->WAIST_STATIC_SCALING[0],
+             coordinates->WAIST_STATIC_SCALING[1],
+             coordinates->WAIST_STATIC_SCALING[2]);
+    glutSolidCube(1.0f);
+    glPopMatrix();
+
+}
+
+void glframework::draw_leftthigh(){
+    glPushMatrix();//draw joint
+    glTranslatef(coordinates->LEFTTHIGH_STATIC_POSITION[0],
+            coordinates->LEFTTHIGH_STATIC_POSITION[1],
+            coordinates->LEFTTHIGH_STATIC_POSITION[2]);
+    glutSolidSphere(0.3,30,30);
+    glPopMatrix();
+
+
+    glTranslatef(coordinates->LEFTTHIGH_STATIC_POSITION[0],
+                 coordinates->LEFTTHIGH_STATIC_POSITION[1],
+                 coordinates->LEFTTHIGH_STATIC_POSITION[2]);
+    glTranslatef(coordinates->leftthigh_dynamic_translate[0]
+                ,coordinates->leftthigh_dynamic_translate[1]
+                ,coordinates->leftthigh_dynamic_translate[2]);
+    glRotatef(coordinates->LEFTTHIGH_STATIC_ROTATION[0],
+              coordinates->LEFTTHIGH_STATIC_ROTATION[1],
+              coordinates->LEFTTHIGH_STATIC_ROTATION[2],
+              coordinates->LEFTTHIGH_STATIC_ROTATION[3]);
+    glRotatef(coordinates->leftthigh_dynamic_rotate[0]
+             ,coordinates->leftthigh_dynamic_rotate[1]
+             ,coordinates->leftthigh_dynamic_rotate[2]
+             ,coordinates->leftthigh_dynamic_rotate[3]);
+    glTranslatef(coordinates->LEFTTHIGH_STATIC_ORIGINPOS[0],
+                 coordinates->LEFTTHIGH_STATIC_ORIGINPOS[1],
+                 coordinates->LEFTTHIGH_STATIC_ORIGINPOS[2]);
+    glPushMatrix();
+    glScalef(coordinates->LEFTTHIGH_STATIC_SCALING[0],
+             coordinates->LEFTTHIGH_STATIC_SCALING[1],
+             coordinates->LEFTTHIGH_STATIC_SCALING[2]);
+    glutSolidCube(1.0);
+    glPopMatrix();
+    draw_leftshank();
+
+}
+
+void glframework::draw_leftshank(){
+    glPushMatrix();//draw joint
+    glTranslatef(coordinates->LEFTSHANK_STATIC_POSITION[0],
+            coordinates->LEFTSHANK_STATIC_POSITION[1],
+            coordinates->LEFTSHANK_STATIC_POSITION[2]);
+    glutSolidSphere(0.3,30,30);
+    glPopMatrix();
+
+
+    glTranslatef(coordinates->LEFTSHANK_STATIC_POSITION[0],
+                 coordinates->LEFTSHANK_STATIC_POSITION[1],
+                 coordinates->LEFTSHANK_STATIC_POSITION[2]);
+    glTranslatef(coordinates->leftshank_dynamic_translate[0]
+                ,coordinates->leftshank_dynamic_translate[1]
+                ,coordinates->leftshank_dynamic_translate[2]);
+    glRotatef(coordinates->LEFTSHANK_STATIC_ROTATION[0],
+              coordinates->LEFTSHANK_STATIC_ROTATION[1],
+              coordinates->LEFTSHANK_STATIC_ROTATION[2],
+              coordinates->LEFTSHANK_STATIC_ROTATION[3]);
+    glRotatef(coordinates->leftshank_dynamic_rotate[0]
+             ,coordinates->leftshank_dynamic_rotate[1]
+             ,coordinates->leftshank_dynamic_rotate[2]
+             ,coordinates->leftshank_dynamic_rotate[3]);
+    glTranslatef(coordinates->LEFTSHANK_STATIC_ORIGINPOS[0],
+                 coordinates->LEFTSHANK_STATIC_ORIGINPOS[1],
+                 coordinates->LEFTSHANK_STATIC_ORIGINPOS[2]);
+
+    glPushMatrix();
+    glScalef(coordinates->LEFTSHANK_STATIC_SCALING[0],
+             coordinates->LEFTSHANK_STATIC_SCALING[1],
+             coordinates->LEFTSHANK_STATIC_SCALING[2]);
+    glutSolidCube(1.0);
+    glPopMatrix();
+    draw_leftfeet();
+}
+
+void glframework::draw_leftfeet(){
+    glPushMatrix();//draw joint
+    glTranslatef(coordinates->LEFTFEET_STATIC_POSITION[0],
+            coordinates->LEFTFEET_STATIC_POSITION[1],
+            coordinates->LEFTFEET_STATIC_POSITION[2]);
+    glutSolidSphere(0.3,30,30);
+    glPopMatrix();
+
+
+    glTranslatef(coordinates->LEFTFEET_STATIC_POSITION[0],
+                 coordinates->LEFTFEET_STATIC_POSITION[1],
+                 coordinates->LEFTFEET_STATIC_POSITION[2]);
+    glTranslatef(coordinates->leftfeet_dynamic_translate[0]
+                ,coordinates->leftfeet_dynamic_translate[1]
+                ,coordinates->leftfeet_dynamic_translate[2]);
+    glRotatef(coordinates->LEFTFEET_STATIC_ROTATION[0],
+              coordinates->LEFTFEET_STATIC_ROTATION[1],
+              coordinates->LEFTFEET_STATIC_ROTATION[2],
+              coordinates->LEFTFEET_STATIC_ROTATION[3]);
+    glRotatef(coordinates->leftfeet_dynamic_rotate[0]
+             ,coordinates->leftfeet_dynamic_rotate[1]
+             ,coordinates->leftfeet_dynamic_rotate[2]
+             ,coordinates->leftfeet_dynamic_rotate[3]);
+    glTranslatef(coordinates->LEFTFEET_STATIC_ORIGINPOS[0],
+                 coordinates->LEFTFEET_STATIC_ORIGINPOS[1],
+                 coordinates->LEFTFEET_STATIC_ORIGINPOS[2]);
+    glPushMatrix();
+    glScalef(coordinates->LEFTFEET_STATIC_SCALING[0],
+             coordinates->LEFTFEET_STATIC_SCALING[1],
+             coordinates->LEFTFEET_STATIC_SCALING[2]);
+    glutSolidCube(1.0);
+    glPopMatrix();
+}
+
+void glframework::draw_rightthigh(){
+    glPushMatrix();//draw joint
+    glTranslatef(coordinates->RIGHTTHIGH_STATIC_POSITION[0],
+            coordinates->RIGHTTHIGH_STATIC_POSITION[1],
+            coordinates->RIGHTTHIGH_STATIC_POSITION[2]);
+    glutSolidSphere(0.3,30,30);
+    glPopMatrix();
+
+
+    glTranslatef(coordinates->RIGHTTHIGH_STATIC_POSITION[0],
+                 coordinates->RIGHTTHIGH_STATIC_POSITION[1],
+                 coordinates->RIGHTTHIGH_STATIC_POSITION[2]);
+    glTranslatef(coordinates->rightthigh_dynamic_translate[0]
+                ,coordinates->rightthigh_dynamic_translate[1]
+                ,coordinates->rightthigh_dynamic_translate[2]);
+    glRotatef(coordinates->RIGHTTHIGH_STATIC_ROTATION[0],
+              coordinates->RIGHTTHIGH_STATIC_ROTATION[1],
+              coordinates->RIGHTTHIGH_STATIC_ROTATION[2],
+              coordinates->RIGHTTHIGH_STATIC_ROTATION[3]);
+    glRotatef(coordinates->rightthigh_dynamic_rotate[0]
+             ,coordinates->rightthigh_dynamic_rotate[1]
+             ,coordinates->rightthigh_dynamic_rotate[2]
+             ,coordinates->rightthigh_dynamic_rotate[3]);
+    glTranslatef(coordinates->RIGHTTHIGH_STATIC_ORIGINPOS[0],
+                 coordinates->RIGHTTHIGH_STATIC_ORIGINPOS[1],
+                 coordinates->RIGHTTHIGH_STATIC_ORIGINPOS[2]);
+    glPushMatrix();
+    glScalef(coordinates->RIGHTTHIGH_STATIC_SCALING[0],
+             coordinates->RIGHTTHIGH_STATIC_SCALING[1],
+             coordinates->RIGHTTHIGH_STATIC_SCALING[2]);
+    glutSolidCube(1.0);
+    glPopMatrix();
+    draw_rightshank();
+
+}
+
+void glframework::draw_rightshank(){
+    glPushMatrix();//draw joint
+    glTranslatef(coordinates->RIGHTSHANK_STATIC_POSITION[0],
+            coordinates->RIGHTSHANK_STATIC_POSITION[1],
+            coordinates->RIGHTSHANK_STATIC_POSITION[2]);
+    glutSolidSphere(0.3,30,30);
+    glPopMatrix();
+
+
+    glTranslatef(coordinates->RIGHTSHANK_STATIC_POSITION[0],
+                 coordinates->RIGHTSHANK_STATIC_POSITION[1],
+                 coordinates->RIGHTSHANK_STATIC_POSITION[2]);
+    glTranslatef(coordinates->rightshank_dynamic_translate[0]
+                ,coordinates->rightshank_dynamic_translate[1]
+                ,coordinates->rightshank_dynamic_translate[2]);
+    glRotatef(coordinates->RIGHTSHANK_STATIC_ROTATION[0],
+              coordinates->RIGHTSHANK_STATIC_ROTATION[1],
+              coordinates->RIGHTSHANK_STATIC_ROTATION[2],
+              coordinates->RIGHTSHANK_STATIC_ROTATION[3]);
+    glRotatef(coordinates->rightshank_dynamic_rotate[0]
+             ,coordinates->rightshank_dynamic_rotate[1]
+             ,coordinates->rightshank_dynamic_rotate[2]
+             ,coordinates->rightshank_dynamic_rotate[3]);
+    glTranslatef(coordinates->RIGHTSHANK_STATIC_ORIGINPOS[0],
+                 coordinates->RIGHTSHANK_STATIC_ORIGINPOS[1],
+                 coordinates->RIGHTSHANK_STATIC_ORIGINPOS[2]);
+
+    glPushMatrix();
+    glScalef(coordinates->RIGHTSHANK_STATIC_SCALING[0],
+             coordinates->RIGHTSHANK_STATIC_SCALING[1],
+             coordinates->RIGHTSHANK_STATIC_SCALING[2]);
+    glutSolidCube(1.0);
+    glPopMatrix();
+    draw_rightfeet();
+
+}
+
+void glframework::draw_rightfeet(){
+    glPushMatrix();//draw joint
+    glTranslatef(coordinates->RIGHTFEET_STATIC_POSITION[0],
+            coordinates->RIGHTFEET_STATIC_POSITION[1],
+            coordinates->RIGHTFEET_STATIC_POSITION[2]);
+    glutSolidSphere(0.3,30,30);
+    glPopMatrix();
+
+
+    glTranslatef(coordinates->RIGHTFEET_STATIC_POSITION[0],
+                 coordinates->RIGHTFEET_STATIC_POSITION[1],
+                 coordinates->RIGHTFEET_STATIC_POSITION[2]);
+    glTranslatef(coordinates->rightfeet_dynamic_translate[0]
+                ,coordinates->rightfeet_dynamic_translate[1]
+                ,coordinates->rightfeet_dynamic_translate[2]);
+    glRotatef(coordinates->RIGHTFEET_STATIC_ROTATION[0],
+              coordinates->RIGHTFEET_STATIC_ROTATION[1],
+              coordinates->RIGHTFEET_STATIC_ROTATION[2],
+              coordinates->RIGHTFEET_STATIC_ROTATION[3]);
+    glRotatef(coordinates->rightfeet_dynamic_rotate[0]
+             ,coordinates->rightfeet_dynamic_rotate[1]
+             ,coordinates->rightfeet_dynamic_rotate[2]
+             ,coordinates->rightfeet_dynamic_rotate[3]);
+    glTranslatef(coordinates->RIGHTFEET_STATIC_ORIGINPOS[0],
+                 coordinates->RIGHTFEET_STATIC_ORIGINPOS[1],
+                 coordinates->RIGHTFEET_STATIC_ORIGINPOS[2]);
+    glPushMatrix();
+    glScalef(coordinates->RIGHTFEET_STATIC_SCALING[0],
+             coordinates->RIGHTFEET_STATIC_SCALING[1],
+             coordinates->RIGHTFEET_STATIC_SCALING[2]);
+    glutSolidCube(1.0);
+    glPopMatrix();
+
 }
