@@ -41,6 +41,22 @@ void CoordinateCalculator::standby(){
         body_dynamic_translate[index] = 0;
         body_dynamic_scale[index] = 1;
     //=====================================
+        /*left shoulder*/
+        leftshoulder_dynamic_translate[index] = 0;
+        leftshoulder_dynamic_scale[index] = 1;
+    //=====================================
+        /*right shoulder*/
+        rightshoulder_dynamic_translate[index] = 0;
+        rightshoulder_dynamic_scale[index] = 1;
+    //=====================================
+        /*left wing*/
+        leftwing_dynamic_translate[index] = 0;
+        leftwing_dynamic_scale[index] = 1;
+    //=====================================
+        /*ring wing*/
+        rightwing_dynamic_translate[index] = 0;
+        rightwing_dynamic_scale[index] = 1;
+    //=====================================
         /*left arm*/
         leftarm_dynamic_translate[index] = 0;
         leftarm_dynamic_scale[index] = 1;
@@ -116,6 +132,10 @@ void CoordinateCalculator::standby(){
     for(int index = 0; index < 4; index++){
         neck_dynamic_rotate[index] = 0;
         body_dynamic_rotate[index] = 0;
+        leftshoulder_dynamic_rotate[index] = 0;
+        rightshoulder_dynamic_rotate[index] = 0;
+        leftwing_dynamic_rotate[index] = 0;
+        rightwing_dynamic_rotate[index] = 0;
         leftarm_dynamic_rotate[index] = 0;
         rightarm_dynamic_rotate[index] = 0;
         leftforearm_dynamic_rotate[index] = 0;
@@ -174,6 +194,66 @@ void CoordinateCalculator::setStaticCoor(){
     NECK_STATIC_ORIGINPOS[0] = 0.0f;
     NECK_STATIC_ORIGINPOS[1] = 1.0f;
     NECK_STATIC_ORIGINPOS[2] = 0.0f;
+//=======================================
+    /*left shoulder*/
+    LEFTSHOULDER_STATIC_POSITION[0] = 0.5f;
+    LEFTSHOULDER_STATIC_POSITION[1] = 1.3f;
+    LEFTSHOULDER_STATIC_POSITION[2] = 0.7f;
+    LEFTSHOULDER_STATIC_ROTATION[0] = -20.0f;
+    LEFTSHOULDER_STATIC_ROTATION[1] = 0.0f;
+    LEFTSHOULDER_STATIC_ROTATION[2] = 1.0f;
+    LEFTSHOULDER_STATIC_ROTATION[3] = -0.6f;
+    LEFTSHOULDER_STATIC_SCALING[0] = 2.5f;
+    LEFTSHOULDER_STATIC_SCALING[1] = 0.3f;
+    LEFTSHOULDER_STATIC_SCALING[2] = 0.3f;
+    LEFTSHOULDER_STATIC_ORIGINPOS[0] = 1.25f;
+    LEFTSHOULDER_STATIC_ORIGINPOS[1] = 0.0f;
+    LEFTSHOULDER_STATIC_ORIGINPOS[2] = 0.0f;
+//=======================================
+    /*right shoulder*/
+    RIGHTSHOULDER_STATIC_POSITION[0] = -0.5f;
+    RIGHTSHOULDER_STATIC_POSITION[1] = 1.3f;
+    RIGHTSHOULDER_STATIC_POSITION[2] = 0.7f;
+    RIGHTSHOULDER_STATIC_ROTATION[0] = -20.0f;
+    RIGHTSHOULDER_STATIC_ROTATION[1] = 0.0f;
+    RIGHTSHOULDER_STATIC_ROTATION[2] = -1.0f;
+    RIGHTSHOULDER_STATIC_ROTATION[3] = 0.6f;
+    RIGHTSHOULDER_STATIC_SCALING[0] = 2.5f;
+    RIGHTSHOULDER_STATIC_SCALING[1] = 0.3f;
+    RIGHTSHOULDER_STATIC_SCALING[2] = 0.3f;
+    RIGHTSHOULDER_STATIC_ORIGINPOS[0] = -1.25f;
+    RIGHTSHOULDER_STATIC_ORIGINPOS[1] = 0.0f;
+    RIGHTSHOULDER_STATIC_ORIGINPOS[2] = 0.0f;
+//=======================================
+    /*left wing*/
+    LEFTWING_STATIC_POSITION[0] = 3.1f;
+    LEFTWING_STATIC_POSITION[1] = -5.5f;
+    LEFTWING_STATIC_POSITION[2] = 0.0f;
+    LEFTWING_STATIC_ROTATION[0] = 0.0f;
+    LEFTWING_STATIC_ROTATION[1] = 0.0f;
+    LEFTWING_STATIC_ROTATION[2] = 0.0f;
+    LEFTWING_STATIC_ROTATION[3] = 1.0f;
+    LEFTWING_STATIC_SCALING[0] = -1.1f;
+    LEFTWING_STATIC_SCALING[1] = 1.1f;
+    LEFTWING_STATIC_SCALING[2] = 1.1f;
+    LEFTWING_STATIC_ORIGINPOS[0] = 0.0f;
+    LEFTWING_STATIC_ORIGINPOS[1] = 0.0f;
+    LEFTWING_STATIC_ORIGINPOS[2] = 0.0f;
+//=======================================
+    /*right wing*/
+    RIGHTWING_STATIC_POSITION[0] = -3.1f;
+    RIGHTWING_STATIC_POSITION[1] = -5.5f;
+    RIGHTWING_STATIC_POSITION[2] = 0.0f;
+    RIGHTWING_STATIC_ROTATION[0] = 0.0f;
+    RIGHTWING_STATIC_ROTATION[1] = 0.0f;
+    RIGHTWING_STATIC_ROTATION[2] = 0.0f;
+    RIGHTWING_STATIC_ROTATION[3] = 1.0f;
+    RIGHTWING_STATIC_SCALING[0] = 1.1f;
+    RIGHTWING_STATIC_SCALING[1] = 1.1f;
+    RIGHTWING_STATIC_SCALING[2] = 1.1f;
+    RIGHTWING_STATIC_ORIGINPOS[0] = 0.0f;
+    RIGHTWING_STATIC_ORIGINPOS[1] = 0.0f;
+    RIGHTWING_STATIC_ORIGINPOS[2] = 0.0f;
 //=======================================
     /*left arm*/
     LEFTARM_STATIC_POSITION[0] = 1.0f;

@@ -89,6 +89,58 @@ public:
     GLfloat body_dynamic_rotate[4];
     GLfloat body_dynamic_scale[3];
 //==================================
+    /*left shoulder coordinates*/
+    /* STATIC_VARIABLE
+     * the father object of left shoulder is body*/
+    GLfloat LEFTSHOULDER_STATIC_POSITION[3];
+    GLfloat LEFTSHOULDER_STATIC_ROTATION[4];
+    GLfloat LEFTSHOULDER_STATIC_SCALING[3];
+    GLfloat LEFTSHOULDER_STATIC_ORIGINPOS[3];
+    /*---------------------*/
+    /* dynamic_variables*/
+    GLfloat leftshoulder_dynamic_translate[3];
+    GLfloat leftshoulder_dynamic_rotate[4];
+    GLfloat leftshoulder_dynamic_scale[3];
+//==================================
+    /*right shoulder coordinates*/
+    /* STATIC_VARIABLE
+     * the father object of right shoulder is body*/
+    GLfloat RIGHTSHOULDER_STATIC_POSITION[3];
+    GLfloat RIGHTSHOULDER_STATIC_ROTATION[4];
+    GLfloat RIGHTSHOULDER_STATIC_SCALING[3];
+    GLfloat RIGHTSHOULDER_STATIC_ORIGINPOS[3];
+    /*---------------------*/
+    /* dynamic_variables*/
+    GLfloat rightshoulder_dynamic_translate[3];
+    GLfloat rightshoulder_dynamic_rotate[4];
+    GLfloat rightshoulder_dynamic_scale[3];
+//==================================
+    /*left wing coordinates*/
+    /* STATIC_VARIABLE
+     * the father object of left wing is left shoulder*/
+    GLfloat LEFTWING_STATIC_POSITION[3];
+    GLfloat LEFTWING_STATIC_ROTATION[4];
+    GLfloat LEFTWING_STATIC_SCALING[3];
+    GLfloat LEFTWING_STATIC_ORIGINPOS[3];
+    /*---------------------*/
+    /* dynamic_variables*/
+    GLfloat leftwing_dynamic_translate[3];
+    GLfloat leftwing_dynamic_rotate[4];
+    GLfloat leftwing_dynamic_scale[3];
+//==================================
+    /*right wing coordinates*/
+    /* STATIC_VARIABLE
+     * the father object of right wing is right shoulder*/
+    GLfloat RIGHTWING_STATIC_POSITION[3];
+    GLfloat RIGHTWING_STATIC_ROTATION[4];
+    GLfloat RIGHTWING_STATIC_SCALING[3];
+    GLfloat RIGHTWING_STATIC_ORIGINPOS[3];
+    /*---------------------*/
+    /* dynamic_variables*/
+    GLfloat rightwing_dynamic_translate[3];
+    GLfloat rightwing_dynamic_rotate[4];
+    GLfloat rightwing_dynamic_scale[3];
+//==================================
     /*left arm coordinates*/
     /* STATIC_VARIABLES
      * the relative object for left arm is body*/

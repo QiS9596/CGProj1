@@ -24,10 +24,14 @@ void glframework::initializeGL()
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
+    /*load textures*/
+    leftwing = LoadGLTextures("./wing.png");
+
     timer.start(0.2, this);
 }
 void glframework::paintGL()
 {
+
 //    glViewport(0,0,512,512);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -39,10 +43,10 @@ void glframework::paintGL()
         gluLookAt(eyex, eyey, eyez,
                  centerx, centery, centerz,
                   0,1,0);
-      std::cout << "eye: " << eyex <<", " << eyey << ", "<< eyez
+      /*std::cout << "eye: " << eyex <<", " << eyey << ", "<< eyez
              <<std::endl
                <<"center: " << centerx << ", " << centery <<", " << centerz
-           <<std::endl;
+           <<std::endl;*/
     }
 //===========================================
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -82,6 +86,24 @@ void glframework::timerEvent(QTimerEvent *)
     this->update();
 }
 
+QOpenGLTexture* glframework::LoadGLTextures( const char * name )
+{
+    QImage img;
+    bool flag = img.load(name);
+    if (flag)
+    {
+        QOpenGLTexture* texture = new QOpenGLTexture(img.mirrored());
+        texture->setMinificationFilter (QOpenGLTexture::Linear);
+        texture->setMagnificationFilter(QOpenGLTexture::Linear);
+        texture->setWrapMode(QOpenGLTexture::ClampToEdge);
+        glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+        return texture;
+    }else{
+        std::cout<<"Load \""<<name<<"\" Failed"<<std::endl;
+        return NULL;
+    }
+}
+
 void glframework::draw_robot(){
     glPushMatrix();
     draw_body();
@@ -114,7 +136,15 @@ void glframework::draw_robot(){
             draw_rightthigh();
             glPopMatrix();
         glPopMatrix();
-
+    //============================================
+        /*shoulders*/
+        glPushMatrix();
+        draw_leftShoulder();
+        glPopMatrix();
+        glPushMatrix();
+        draw_rightShoulder();
+        glPopMatrix();
+    //============================================
     glPopMatrix();
 }
 
@@ -147,6 +177,80 @@ void glframework::draw_body(){
 
 }
 
+void glframework::draw_leftwing(){
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glPushMatrix();
+    leftwing -> bind();
+    glTranslatef(coordinates->LEFTWING_STATIC_POSITION[0],
+                 coordinates->LEFTWING_STATIC_POSITION[1],
+                 coordinates->LEFTWING_STATIC_POSITION[2]);
+    glTranslatef(coordinates->leftwing_dynamic_translate[0]
+                ,coordinates->leftwing_dynamic_translate[1]
+                ,coordinates->leftwing_dynamic_translate[2]);
+    glRotatef(coordinates->LEFTWING_STATIC_ROTATION[0],
+              coordinates->LEFTWING_STATIC_ROTATION[1],
+              coordinates->LEFTWING_STATIC_ROTATION[2],
+              coordinates->LEFTWING_STATIC_ROTATION[3]);
+    glRotatef(coordinates->leftwing_dynamic_rotate[0]
+             ,coordinates->leftwing_dynamic_rotate[1]
+             ,coordinates->leftwing_dynamic_rotate[2]
+             ,coordinates->leftwing_dynamic_rotate[3]);
+    glTranslatef(coordinates->LEFTWING_STATIC_ORIGINPOS[0],
+                 coordinates->LEFTWING_STATIC_ORIGINPOS[1],
+                 coordinates->LEFTWING_STATIC_ORIGINPOS[2]);
+    glScalef(coordinates->LEFTWING_STATIC_SCALING[0],
+             coordinates->LEFTWING_STATIC_SCALING[1],
+             coordinates->LEFTWING_STATIC_SCALING[2]);
+    glBegin(GL_QUADS);
+    glTexCoord2d(0,0);glVertex3d(0,0,0);
+    glTexCoord2d(1,0);glVertex3d(5,0,0);
+    glTexCoord2d(1,1);glVertex3d(5,5,0);
+    glTexCoord2d(0,1);glVertex3d(0,5,0);
+    glEnd();
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+    glDisable(GL_BLEND);
+}
+
+void glframework::draw_rightwing(){
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glPushMatrix();
+    leftwing -> bind();
+    glTranslatef(coordinates->RIGHTWING_STATIC_POSITION[0],
+                 coordinates->RIGHTWING_STATIC_POSITION[1],
+                 coordinates->RIGHTWING_STATIC_POSITION[2]);
+    glTranslatef(coordinates->rightwing_dynamic_translate[0]
+                ,coordinates->rightwing_dynamic_translate[1]
+                ,coordinates->rightwing_dynamic_translate[2]);
+    glRotatef(coordinates->RIGHTWING_STATIC_ROTATION[0],
+              coordinates->RIGHTWING_STATIC_ROTATION[1],
+              coordinates->RIGHTWING_STATIC_ROTATION[2],
+              coordinates->RIGHTWING_STATIC_ROTATION[3]);
+    glRotatef(coordinates->rightwing_dynamic_rotate[0]
+             ,coordinates->rightwing_dynamic_rotate[1]
+             ,coordinates->rightwing_dynamic_rotate[2]
+             ,coordinates->rightwing_dynamic_rotate[3]);
+    glTranslatef(coordinates->RIGHTWING_STATIC_ORIGINPOS[0],
+                 coordinates->RIGHTWING_STATIC_ORIGINPOS[1],
+                 coordinates->RIGHTWING_STATIC_ORIGINPOS[2]);
+    glScalef(coordinates->RIGHTWING_STATIC_SCALING[0],
+             coordinates->RIGHTWING_STATIC_SCALING[1],
+             coordinates->RIGHTWING_STATIC_SCALING[2]);
+    glBegin(GL_QUADS);
+    glTexCoord2d(0,0);glVertex3d(0,0,0);
+    glTexCoord2d(1,0);glVertex3d(5,0,0);
+    glTexCoord2d(1,1);glVertex3d(5,5,0);
+    glTexCoord2d(0,1);glVertex3d(0,5,0);
+    glEnd();
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+    glDisable(GL_BLEND);
+}
+
 void glframework::draw_head(){
 
     glTranslatef(coordinates->NECK_STATIC_POSITION[0],
@@ -174,7 +278,58 @@ void glframework::draw_head(){
     glPopMatrix();
 
 }
-
+void glframework::draw_leftShoulder(){
+    glTranslatef(coordinates->LEFTSHOULDER_STATIC_POSITION[0],
+                 coordinates->LEFTSHOULDER_STATIC_POSITION[1],
+                 coordinates->LEFTSHOULDER_STATIC_POSITION[2]);
+    glTranslatef(coordinates->leftshoulder_dynamic_translate[0]
+                ,coordinates->leftshoulder_dynamic_translate[1]
+                ,coordinates->leftshoulder_dynamic_translate[2]);
+    glRotatef(coordinates->LEFTSHOULDER_STATIC_ROTATION[0],
+              coordinates->LEFTSHOULDER_STATIC_ROTATION[1],
+              coordinates->LEFTSHOULDER_STATIC_ROTATION[2],
+              coordinates->LEFTSHOULDER_STATIC_ROTATION[3]);
+    glRotatef(coordinates->leftshoulder_dynamic_rotate[0]
+             ,coordinates->leftshoulder_dynamic_rotate[1]
+             ,coordinates->leftshoulder_dynamic_rotate[2]
+             ,coordinates->leftshoulder_dynamic_rotate[3]);
+    glTranslatef(coordinates->LEFTSHOULDER_STATIC_ORIGINPOS[0],
+                 coordinates->LEFTSHOULDER_STATIC_ORIGINPOS[1],
+                 coordinates->LEFTSHOULDER_STATIC_ORIGINPOS[2]);
+    glPushMatrix();
+    glScalef(coordinates->LEFTSHOULDER_STATIC_SCALING[0],
+             coordinates->LEFTSHOULDER_STATIC_SCALING[1],
+             coordinates->LEFTSHOULDER_STATIC_SCALING[2]);
+    glutSolidCube(1.0);
+    glPopMatrix();
+    draw_leftwing();
+}
+void glframework::draw_rightShoulder(){
+    glTranslatef(coordinates->RIGHTSHOULDER_STATIC_POSITION[0],
+                 coordinates->RIGHTSHOULDER_STATIC_POSITION[1],
+                 coordinates->RIGHTSHOULDER_STATIC_POSITION[2]);
+    glTranslatef(coordinates->rightshoulder_dynamic_translate[0]
+                ,coordinates->rightshoulder_dynamic_translate[1]
+                ,coordinates->rightshoulder_dynamic_translate[2]);
+    glRotatef(coordinates->RIGHTSHOULDER_STATIC_ROTATION[0],
+              coordinates->RIGHTSHOULDER_STATIC_ROTATION[1],
+              coordinates->RIGHTSHOULDER_STATIC_ROTATION[2],
+              coordinates->RIGHTSHOULDER_STATIC_ROTATION[3]);
+    glRotatef(coordinates->rightshoulder_dynamic_rotate[0]
+             ,coordinates->rightshoulder_dynamic_rotate[1]
+             ,coordinates->rightshoulder_dynamic_rotate[2]
+             ,coordinates->rightshoulder_dynamic_rotate[3]);
+    glTranslatef(coordinates->RIGHTSHOULDER_STATIC_ORIGINPOS[0],
+                 coordinates->RIGHTSHOULDER_STATIC_ORIGINPOS[1],
+                 coordinates->RIGHTSHOULDER_STATIC_ORIGINPOS[2]);
+    glPushMatrix();
+    glScalef(coordinates->RIGHTSHOULDER_STATIC_SCALING[0],
+             coordinates->RIGHTSHOULDER_STATIC_SCALING[1],
+             coordinates->RIGHTSHOULDER_STATIC_SCALING[2]);
+    glutSolidCube(1.0);
+    glPopMatrix();
+    draw_rightwing();
+}
 void glframework::draw_leftarm(){
 
     glTranslatef(coordinates->LEFTARM_STATIC_POSITION[0],

@@ -6,6 +6,7 @@
 #include <QBasicTimer>
 #include <coordinatecalculator.h>
 #include <iostream>
+#include <QOpenGLTexture>
 class glframework : public QOpenGLWidget , protected QOpenGLFunctions_1_1
 {
     Q_OBJECT
@@ -20,9 +21,18 @@ public:
 protected:
     void timerEvent(QTimerEvent *e);
 private:
+    QOpenGLTexture * leftwing;
     QBasicTimer timer;
+    QOpenGLTexture* LoadGLTextures( const char * name );
+    //============================================
     void draw_robot();
+    //============================================
     void draw_body();
+    void draw_leftShoulder();
+    void draw_rightShoulder();
+    void draw_leftwing();
+    void draw_rightwing();
+    //============================================
     void draw_head();
     //============================================
     void draw_leftarm();//draw left arm and it's children

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>907</width>
-    <height>863</height>
+    <width>1646</width>
+    <height>1151</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -130,10 +130,10 @@
       <widget class="glframework" name="widget_2" native="true">
        <property name="geometry">
         <rect>
-         <x>310</x>
-         <y>10</y>
-         <width>551</width>
-         <height>631</height>
+         <x>460</x>
+         <y>-10</y>
+         <width>1151</width>
+         <height>1051</height>
         </rect>
        </property>
       </widget>
@@ -146,7 +146,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>907</width>
+     <width>1646</width>
      <height>29</height>
     </rect>
    </property>
