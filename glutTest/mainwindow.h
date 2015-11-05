@@ -45,6 +45,8 @@ private slots:
 
     void on_button_Movehand_clicked();
 
+    void on_drawFog_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
 };

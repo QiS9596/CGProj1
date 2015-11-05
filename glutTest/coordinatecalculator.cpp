@@ -81,6 +81,9 @@ void CoordinateCalculator::standby(){
         righthand_dynamic_translate[index] = 0;
         righthand_dynamic_scale[index] = 1;
     //=====================================
+        /*sword*/
+        sword_dynamic_translate[index] = 0;
+    //=====================================
         /* since we have 3 fingers for each hand,
          * and each finger have one knuckle,
          * we initiate their dynamic variables
@@ -142,6 +145,8 @@ void CoordinateCalculator::standby(){
         rightforearm_dynamic_rotate[index] = 0;
         lefthand_dynamic_rotate[index] = 0;
         righthand_dynamic_rotate[index] = 0;
+        sword_dynamic_rotate[index] = 0;
+
         /*finger and finger-knuckles*/
         for(int fingerNumber = 0; fingerNumber < 3; fingerNumber++){
             leftfingers_dynamic_rotate[fingerNumber][index] = 0;

@@ -11,6 +11,8 @@ class glframework : public QOpenGLWidget , protected QOpenGLFunctions_1_1
 {
     Q_OBJECT
 public:
+    bool drawFog = false;
+    bool drawSword = true;
     explicit glframework(QWidget *parent = 0);
     ~glframework();
     void initializeGL();
@@ -22,10 +24,12 @@ protected:
     void timerEvent(QTimerEvent *e);
 private:
     QOpenGLTexture * leftwing;
-    QOpenGLTexture * wave;
+//    QOpenGLTexture * wave;
     QOpenGLTexture * blade;
     QBasicTimer timer;
     QOpenGLTexture* LoadGLTextures( const char * name );
+    void draw_fog();
+    void draw_sword();
     //============================================
     void draw_robot();
     //============================================

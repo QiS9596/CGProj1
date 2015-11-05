@@ -16,7 +16,7 @@ glframework::~glframework()
 void glframework::initializeGL()
 {
     initializeOpenGLFunctions();
-    glClearColor(1.0, 1.0, 1.0, 1);
+    glClearColor(0.5, 0.5, 0.5, 1);
     glEnable(GL_DEPTH_TEST);
     GLfloat light_position[] = {-5.0f, 5.0f, 0.0f, 0.0f};
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
@@ -26,12 +26,17 @@ void glframework::initializeGL()
 
     /*load textures*/
     leftwing = LoadGLTextures("./wing.png");
-
+    blade = LoadGLTextures("./texture/sword.png");
     timer.start(0.2, this);
 }
 void glframework::paintGL()
 {
-
+    if(drawFog){
+        draw_fog();
+    }
+    else{
+        glDisable(GL_FOG);
+    }
 //    glViewport(0,0,512,512);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -104,6 +109,62 @@ QOpenGLTexture* glframework::LoadGLTextures( const char * name )
     }
 }
 
+void glframework::draw_fog(){
+    glEnable(GL_FOG);{
+        GLfloat fogColor[4] = {0.5,0.5,0.5,1.0};
+        GLint fogMode;
+        fogMode = GL_EXP2;
+        glFogi(GL_FOG_MODE, fogMode);
+        glFogfv(GL_FOG_COLOR, fogColor);
+        glFogf(GL_FOG_DENSITY, 0.05);
+        glHint(GL_FOG_HINT, GL_NICEST);
+        glFogf(GL_FOG_START, 20.0);
+        glFogf(GL_FOG_END,-20.0);
+    }
+}
+
+void glframework::draw_sword(){
+    glPushMatrix();
+
+    glTranslatef(0.0f,0.0f,0.0f); //STATIC POSITION
+    glTranslatef(coordinates->sword_dynamic_translate[0]
+                ,coordinates->sword_dynamic_translate[1]
+                ,coordinates->sword_dynamic_translate[2]);
+    glRotatef(0.0f,0.0f,0.0f,0.0f);
+    glRotatef(coordinates->sword_dynamic_rotate[0]
+             ,coordinates->sword_dynamic_rotate[1]
+             ,coordinates->sword_dynamic_rotate[2]
+             ,coordinates->sword_dynamic_rotate[3]);
+    glTranslatef(0.0f,0.0f,3.5f);
+    glPushMatrix();
+    glScalef(0.1f,0.1f,7.0f);
+    glutSolidCube(1.0);
+    glPopMatrix();
+//===============================
+    /*blade texture*/
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glPushMatrix();
+    blade -> bind();
+    glTranslatef(0.0f,3.0f,-3.5f);
+    glRotatef(-90.0f,0.0f,1.0f,0.0f);
+    glScalef(2.0f,-1.0f,1.0f);
+    glBegin(GL_QUADS);
+    glTexCoord2d(0,0);glVertex3d(0,0,0);
+    glTexCoord2d(1,0);glVertex3d(5,0,0);
+    glTexCoord2d(1,1);glVertex3d(5,5,0);
+    glTexCoord2d(0,1);glVertex3d(0,5,0);
+    glEnd();
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+    glDisable(GL_BLEND);
+/*blade texture end*/
+
+
+    glPopMatrix();
+}
+
 void glframework::draw_robot(){
     glPushMatrix();
     draw_body();
@@ -121,10 +182,7 @@ void glframework::draw_robot(){
         draw_leftarm(); //Note we finish drawing children in this function
         glPopMatrix();
     //============================================
-        /*right arm and it's children*/
-        glPushMatrix();
-        draw_rightarm(); //Note we finish drawing children in this function
-        glPopMatrix();
+
     //============================================
         /*waist and legs*/
         glPushMatrix();
@@ -135,6 +193,11 @@ void glframework::draw_robot(){
             glPushMatrix();
             draw_rightthigh();
             glPopMatrix();
+        glPopMatrix();
+    //============================================
+        /*right arm and it's children*/
+        glPushMatrix();
+        draw_rightarm(); //Note we finish drawing children in this function
         glPopMatrix();
     //============================================
         /*shoulders*/
@@ -605,7 +668,9 @@ void glframework::draw_righthand(){
     glColor3f(0.0f,1.0f,0.0f);
     glutSolidCube(1.0);
     glPopMatrix();
-
+    if(drawSword){
+        draw_sword();
+    }
     draw_rightfingers();
 }
 

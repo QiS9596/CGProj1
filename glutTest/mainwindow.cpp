@@ -97,3 +97,9 @@ void MainWindow::on_button_Movehand_clicked()
     ui->widget_2->coordinates->state = 1;// move hand state
     ui->widget_2->update();
 }
+
+void MainWindow::on_drawFog_toggled(bool checked)
+{
+    ui->widget_2->drawFog = checked;
+    ui->widget_2->update();
+}

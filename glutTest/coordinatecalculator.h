@@ -219,6 +219,12 @@ public:
     GLfloat righthand_dynamic_rotate[4];
     GLfloat righthand_dynamic_scale[3];
 //===================================
+    /*sword coordinates*/
+    /* sword is made up by some different object,
+     * so there is no static variables for sword*/
+    GLfloat sword_dynamic_translate[3];
+    GLfloat sword_dynamic_rotate[4];
+//===================================
     /*left fingers coordinates*/
     /* STATIC_VARIABLES
      * the realtive object for left fingers is left hand
