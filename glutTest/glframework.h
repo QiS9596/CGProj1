@@ -22,6 +22,8 @@ protected:
     void timerEvent(QTimerEvent *e);
 private:
     QOpenGLTexture * leftwing;
+    QOpenGLTexture * wave;
+    QOpenGLTexture * blade;
     QBasicTimer timer;
     QOpenGLTexture* LoadGLTextures( const char * name );
     //============================================
