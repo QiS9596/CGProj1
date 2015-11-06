@@ -49,6 +49,8 @@ private slots:
 
     void on_button_summonSword_clicked();
 
+    void on_button_transfomation_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

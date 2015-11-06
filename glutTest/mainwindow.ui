@@ -23,7 +23,7 @@
          <x>-10</x>
          <y>-10</y>
          <width>235</width>
-         <height>337</height>
+         <height>380</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -31,13 +31,6 @@
          <widget class="QPushButton" name="centeryAdd">
           <property name="text">
            <string>Cy+</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="eyezMinus">
-          <property name="text">
-           <string>eyez-</string>
           </property>
          </widget>
         </item>
@@ -52,6 +45,13 @@
          <widget class="QPushButton" name="centerzMinus">
           <property name="text">
            <string>Cz-</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="eyezMinus">
+          <property name="text">
+           <string>eyez-</string>
           </property>
          </widget>
         </item>
@@ -125,6 +125,13 @@
           </property>
          </widget>
         </item>
+        <item row="7" column="1">
+         <widget class="QPushButton" name="button_summonSword">
+          <property name="text">
+           <string>summonSword</string>
+          </property>
+         </widget>
+        </item>
         <item row="7" column="0">
          <widget class="QCheckBox" name="drawFog">
           <property name="text">
@@ -132,10 +139,10 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="1">
-         <widget class="QPushButton" name="button_summonSword">
+        <item row="8" column="0">
+         <widget class="QPushButton" name="button_transfomation">
           <property name="text">
-           <string>summonSword</string>
+           <string>transformation</string>
           </property>
          </widget>
         </item>

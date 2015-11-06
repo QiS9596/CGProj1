@@ -17,6 +17,9 @@ void CoordinateCalculator::updateDynamicCoordinate(){
     case SUMMON_SWORD_STATE:
         summonSword();
         break;
+    case TRANSFORMATION_STATE:
+        transformation();
+        break;
     default:
         standby();
     }
@@ -632,6 +635,46 @@ void CoordinateCalculator::summonSword(){
         if(ground_dynamic_scale[0] <= 0.1f
                 && ground_dynamic_scale[2] <= 0.1f)
             drawGround = false;
+        break;
+    }
+}
+
+void CoordinateCalculator::transformation(){
+    drawSword = false;
+    switch(subState){
+    case 0:
+        drawPlaneHead = true;
+        ph_dynamic_translate[1] = -2.0f;
+        subState = 1;
+        break;
+    case 1:
+        body_dynamic_rotate[2] = 1.0f;
+        body_dynamic_rotate[3] = -0.5f;
+        if(body_dynamic_rotate[0] < 350)
+            body_dynamic_rotate[0] += 0.9;
+        if(leftshoulder_dynamic_translate[1] > -2.3f)
+            leftshoulder_dynamic_translate[1] -= 0.03f;
+        if(rightshoulder_dynamic_translate[1] > -2.3f)
+            rightshoulder_dynamic_translate[1] -= 0.03f;
+        leftshoulder_dynamic_rotate[3] = 1.0f;
+        rightshoulder_dynamic_rotate[3] = 1.0f;
+        if(leftshoulder_dynamic_rotate[0] < 80.0f)
+            leftshoulder_dynamic_rotate[0]++;
+        if(rightshoulder_dynamic_rotate[0] > -80.0f)
+            rightshoulder_dynamic_rotate[0] --;
+        if(neck_dynamic_translate[1] > -1.5f)
+            neck_dynamic_translate[1] -= 0.03;
+
+        if(ph_dynamic_translate[1] < 0.0f)
+            ph_dynamic_translate[1] += 0.03;
+        if(leftthigh_dynamic_translate[1] < 1.8f)
+            leftthigh_dynamic_translate[1] += 0.03;
+        if(leftshank_dynamic_translate[1] < 1.8f)
+            leftshank_dynamic_translate[1] += 0.03;
+        if(rightthigh_dynamic_translate[1] < 1.8f)
+            rightthigh_dynamic_translate[1] += 0.03;
+        if(rightshank_dynamic_translate[1] < 1.8f)
+            rightshank_dynamic_translate[1] += 0.03;
         break;
     }
 }

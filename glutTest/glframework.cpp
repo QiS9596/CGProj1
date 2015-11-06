@@ -381,9 +381,9 @@ void glframework::draw_planehead(){
     glTranslatef(coordinates->NECK_STATIC_POSITION[0],
                  1.5f,
                  0.0f);
-    glTranslatef(coordinates->neck_dynamic_translate[0],
-                 coordinates->neck_dynamic_translate[1],
-                 coordinates->neck_dynamic_translate[2]);
+    glTranslatef(coordinates->ph_dynamic_translate[0],
+                 coordinates->ph_dynamic_translate[1],
+                 coordinates->ph_dynamic_translate[2]);
     glRotatef(-90,1.0f,0.0f,0.0f);
     glutSolidCone(0.6,2.0,30,30);
 }

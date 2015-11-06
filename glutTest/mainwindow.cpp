@@ -111,3 +111,11 @@ void MainWindow::on_button_summonSword_clicked()
     ui->widget_2->coordinates->state = 1000;
     ui->widget_2->update();
 }
+
+void MainWindow::on_button_transfomation_clicked()
+{
+    ui->widget_2->coordinates->subState = 0;
+    ui->widget_2->coordinates->standby();
+    ui->widget_2->coordinates->state = 1001;
+    ui->widget_2->update();
+}

@@ -45,7 +45,7 @@
 const int STANDBY_STATE = 0;
 const int MOVE_HAND_STATE = 1;
 const int SUMMON_SWORD_STATE = 1000;
-
+const int TRANSFORMATION_STATE = 1001;
 
 class CoordinateCalculator
 {
@@ -392,7 +392,7 @@ private:
     void setStaticCoor();
     void moveHand();
     void summonSword();
-
+    void transformation();
 //signals:
 //public slots:
 };
