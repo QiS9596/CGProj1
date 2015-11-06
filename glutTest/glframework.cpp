@@ -59,7 +59,7 @@ void glframework::paintGL()
     //glColor3f(1,0,0);
     glPushMatrix();
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_COLOR_MATERIAL);
+//    glEnable(GL_COLOR_MATERIAL);
     glColor3f(1.0f,0.0f,0.0f);
     GLfloat light_position[] = {-8.0f, 7.0f, -3.0f, 0.0f};
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
@@ -168,10 +168,6 @@ void glframework::draw_sword(){
 
 void glframework::draw_ground(){
     glPushMatrix();
-
-
-
-
 //===============================
     /*ground texture*/
     glEnable(GL_TEXTURE_2D);
@@ -202,6 +198,13 @@ void glframework::draw_ground(){
 
 void glframework::draw_robot(){
     glPushMatrix();
+    GLfloat ambient[] = {0.1, 0.2, 0.8, 1.0};
+    GLfloat diffuse[] = {0.2, 0.2, 0.8, 1.0};
+    GLfloat specular[] = {1.0, 0.8, 0.8, 1.0};
+    glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+    glMaterialf(GL_FRONT, GL_SHININESS, 33);
     draw_body();
     /* draw five things that connect to the body
      * in the following part

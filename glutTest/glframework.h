@@ -15,6 +15,7 @@ public:
     explicit glframework(QWidget *parent = 0);
     ~glframework();
     void initializeGL();
+    const int BLUE = 1;
     void paintGL();
     void resizeGL(int w,int h);
     CoordinateCalculator * coordinates;
@@ -31,6 +32,7 @@ private:
     void draw_fog();
     void draw_sword();
     void draw_ground();
+    void setMaterial(int flag);
     //============================================
     void draw_robot();
     //============================================
