@@ -35,6 +35,7 @@ void CoordinateCalculator::standby(){
      * variables to 0, and set scale variables to 1
      */
     for(int index = 0; index < 3; index++){
+        ph_dynamic_translate[index] = 0;
     //==================
         /*neck*/
         neck_dynamic_translate[index] = 0;

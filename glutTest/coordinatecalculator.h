@@ -46,6 +46,7 @@ const int STANDBY_STATE = 0;
 const int MOVE_HAND_STATE = 1;
 const int SUMMON_SWORD_STATE = 1000;
 
+
 class CoordinateCalculator
 {
 public:
@@ -54,8 +55,12 @@ public:
     bool drawSword = false;
     bool drawFog = false;
     bool drawGround = false;
+    bool drawPlaneHead = false;
     CoordinateCalculator();
     void updateDynamicCoordinate();
+//==================================
+    /*plane head*/
+    GLfloat ph_dynamic_translate[3];
 //==================================
     /*neck coordinates*/
     /*static coordinate means the relative

@@ -200,7 +200,7 @@ void glframework::draw_robot(){
     glPushMatrix();
     GLfloat ambient[] = {0.1, 0.2, 0.8, 1.0};
     GLfloat diffuse[] = {0.2, 0.2, 0.8, 1.0};
-    GLfloat specular[] = {1.0, 0.8, 0.8, 1.0};
+    GLfloat specular[] = {0.6, 0.6, 0.8, 0.4};
     glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
     glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
@@ -209,6 +209,16 @@ void glframework::draw_robot(){
     /* draw five things that connect to the body
      * in the following part
      */
+        /*plane head*/
+        glPushMatrix();
+        if(coordinates->drawPlaneHead)
+            draw_planehead();
+        glPopMatrix();
+    //=================
+        glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+        glMaterialf(GL_FRONT, GL_SHININESS, 33);
     //============================================
         /*head*/
         glPushMatrix();
@@ -360,6 +370,24 @@ void glframework::draw_rightwing(){
     glDisable(GL_BLEND);
 }
 
+void glframework::draw_planehead(){
+    GLfloat ambient[] = {0.8, 0.4, 0.1, 1.0};
+    GLfloat diffuse[] = {0.8, 0.4, 0.1, 1.0};
+    GLfloat specular[] = {0.8, 0.6, 0.4, 0.4};
+    glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+    glMaterialf(GL_FRONT, GL_SHININESS, 33);
+    glTranslatef(coordinates->NECK_STATIC_POSITION[0],
+                 1.5f,
+                 0.0f);
+    glTranslatef(coordinates->neck_dynamic_translate[0],
+                 coordinates->neck_dynamic_translate[1],
+                 coordinates->neck_dynamic_translate[2]);
+    glRotatef(-90,1.0f,0.0f,0.0f);
+    glutSolidCone(0.6,2.0,30,30);
+}
+
 void glframework::draw_head(){
 
     glTranslatef(coordinates->NECK_STATIC_POSITION[0],
@@ -383,6 +411,18 @@ void glframework::draw_head(){
     glScalef(coordinates->NECK_STATIC_SCALING[0],
              coordinates->NECK_STATIC_SCALING[1],
              coordinates->NECK_STATIC_SCALING[2]);
+    glutSolidCube(1.0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-0.4,0.1,0.1);
+    glScalef(0.2,1.0,0.6);
+    glutSolidCube(1.0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(0.4,0.1,0.1);
+    glScalef(0.2,1.0,0.6);
     glutSolidCube(1.0);
     glPopMatrix();
 

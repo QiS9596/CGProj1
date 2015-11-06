@@ -37,6 +37,7 @@ private:
     void draw_robot();
     //============================================
     void draw_body();
+    void draw_planehead();
     void draw_leftShoulder();
     void draw_rightShoulder();
     void draw_leftwing();
