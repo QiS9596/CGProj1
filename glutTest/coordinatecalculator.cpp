@@ -1,5 +1,5 @@
 #include "coordinatecalculator.h"
-
+int mywait = 0;
 CoordinateCalculator::CoordinateCalculator()
 {
     initDefaultCoordinates();
@@ -679,6 +679,11 @@ void CoordinateCalculator::transformation(){
             subState = 2;
         break;
     case 2:
+        mywait ++;
+        if(mywait >= 500)
+            subState = 3;
+        break;
+    case 3:
         body_dynamic_rotate[2] = 1.0f;
         body_dynamic_rotate[3] = -0.5f;
         if(body_dynamic_rotate[0] < 720)
@@ -706,8 +711,10 @@ void CoordinateCalculator::transformation(){
             rightthigh_dynamic_translate[1] -= 0.015;
         if(rightshank_dynamic_translate[1] >= 0.0f)
             rightshank_dynamic_translate[1] -= 0.015;
-        if(body_dynamic_rotate[0] >= 720)
+        if(body_dynamic_rotate[0] >= 720){
             drawPlaneHead = false;
+            mywait = 0;
+        }
         break;
     }
 }
