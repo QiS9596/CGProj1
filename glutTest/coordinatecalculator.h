@@ -44,12 +44,15 @@
  */
 const int STANDBY_STATE = 0;
 const int MOVE_HAND_STATE = 1;
+const int SUMMON_SWORD_STATE = 1000;
 
 class CoordinateCalculator
 {
 public:
     int state;
-
+    int subState;
+    bool drawSword = false;
+    bool drawFog = false;
     CoordinateCalculator();
     void updateDynamicCoordinate();
 //==================================
@@ -379,6 +382,7 @@ private:
     //call function standby() and setStaticCoor()
     void setStaticCoor();
     void moveHand();
+    void summonSword();
 //signals:
 //public slots:
 };

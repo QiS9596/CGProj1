@@ -23,7 +23,7 @@
          <x>-10</x>
          <y>-10</y>
          <width>235</width>
-         <height>325</height>
+         <height>337</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
@@ -129,6 +129,13 @@
          <widget class="QCheckBox" name="drawFog">
           <property name="text">
            <string>drawFog</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QPushButton" name="button_summonSword">
+          <property name="text">
+           <string>summonSword</string>
           </property>
          </widget>
         </item>

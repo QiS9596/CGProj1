@@ -31,7 +31,7 @@ void glframework::initializeGL()
 }
 void glframework::paintGL()
 {
-    if(drawFog){
+    if(coordinates->drawFog){
         draw_fog();
     }
     else{
@@ -668,7 +668,7 @@ void glframework::draw_righthand(){
     glColor3f(0.0f,1.0f,0.0f);
     glutSolidCube(1.0);
     glPopMatrix();
-    if(drawSword){
+    if(coordinates->drawSword){
         draw_sword();
     }
     draw_rightfingers();

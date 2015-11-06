@@ -14,6 +14,9 @@ void CoordinateCalculator::updateDynamicCoordinate(){
     case MOVE_HAND_STATE:
         moveHand();
         break;
+    case SUMMON_SWORD_STATE:
+        summonSword();
+        break;
     default:
         standby();
     }
@@ -579,4 +582,33 @@ void CoordinateCalculator::moveHand(){
     rightarm_dynamic_rotate[1] = 1.0f;
     if(rightarm_dynamic_rotate[0] < 90)
         rightarm_dynamic_rotate[0] += 1.0f;
+}
+
+void CoordinateCalculator::summonSword(){
+    switch(subState){
+    case 0:
+        rightarm_dynamic_rotate[1] = 1.0f;
+        if(rightarm_dynamic_rotate[0] < 180)
+            rightarm_dynamic_rotate[0] += 1.0f;
+        righthand_dynamic_rotate[1] = 1.0f;
+        if(righthand_dynamic_rotate[0] > -90.0f)
+            righthand_dynamic_rotate[0] -= 0.5f;
+        if(rightarm_dynamic_rotate[0] >= 180
+                && righthand_dynamic_rotate[0] <= -90.0f){
+            subState = 1;
+            sword_dynamic_translate[2] = 10.0f;
+            drawSword = true;
+        }
+        break;
+    case 1:
+        if(sword_dynamic_translate[2] >= 0.0f)
+            sword_dynamic_translate[2] -= 0.1f;
+        for(int index = 0; index < 3; index ++){
+            rightfingers_dynamic_rotate[index][3] = 1.0f;
+            if(rightfingers_dynamic_rotate[index][0] > - 90)
+                rightfingers_dynamic_rotate[index][0] --;
+        }
+        break;
+
+    }
 }

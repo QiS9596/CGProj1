@@ -47,6 +47,8 @@ private slots:
 
     void on_drawFog_toggled(bool checked);
 
+    void on_button_summonSword_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

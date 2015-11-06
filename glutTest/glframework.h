@@ -11,8 +11,7 @@ class glframework : public QOpenGLWidget , protected QOpenGLFunctions_1_1
 {
     Q_OBJECT
 public:
-    bool drawFog = false;
-    bool drawSword = true;
+
     explicit glframework(QWidget *parent = 0);
     ~glframework();
     void initializeGL();

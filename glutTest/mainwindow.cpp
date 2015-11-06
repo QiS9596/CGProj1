@@ -100,6 +100,14 @@ void MainWindow::on_button_Movehand_clicked()
 
 void MainWindow::on_drawFog_toggled(bool checked)
 {
-    ui->widget_2->drawFog = checked;
+    ui->widget_2->coordinates->drawFog = checked;
+    ui->widget_2->update();
+}
+
+void MainWindow::on_button_summonSword_clicked()
+{
+    ui->widget_2->coordinates->subState = 0;
+    ui->widget_2->coordinates->standby();
+    ui->widget_2->coordinates->state = 1000;
     ui->widget_2->update();
 }
