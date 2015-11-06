@@ -53,6 +53,7 @@ public:
     int subState;
     bool drawSword = false;
     bool drawFog = false;
+    bool drawGround = false;
     CoordinateCalculator();
     void updateDynamicCoordinate();
 //==================================
@@ -376,6 +377,9 @@ public:
     GLfloat rightfeet_dynamic_rotate[4];
     GLfloat rightfeet_dynamic_scale[3];
 //====================================
+    /*ground coordinates*/
+    GLfloat ground_dynamic_scale[3];
+//====================================
     void standby(); //set dynamic coordinates to 0
 private:
     void initDefaultCoordinates();  //called when first built coordinate calculator
@@ -383,6 +387,7 @@ private:
     void setStaticCoor();
     void moveHand();
     void summonSword();
+
 //signals:
 //public slots:
 };

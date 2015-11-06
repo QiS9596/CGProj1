@@ -25,10 +25,12 @@ private:
     QOpenGLTexture * leftwing;
 //    QOpenGLTexture * wave;
     QOpenGLTexture * blade;
+    QOpenGLTexture * ground;
     QBasicTimer timer;
     QOpenGLTexture* LoadGLTextures( const char * name );
     void draw_fog();
     void draw_sword();
+    void draw_ground();
     //============================================
     void draw_robot();
     //============================================

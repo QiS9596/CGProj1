@@ -25,8 +25,9 @@ void glframework::initializeGL()
     glEnable(GL_LIGHT0);
 
     /*load textures*/
-    leftwing = LoadGLTextures("./wing.png");
+    leftwing = LoadGLTextures("./texture/wing.png");
     blade = LoadGLTextures("./texture/sword.png");
+    ground = LoadGLTextures("./texture/ground.png");
     timer.start(0.2, this);
 }
 void glframework::paintGL()
@@ -165,6 +166,40 @@ void glframework::draw_sword(){
     glPopMatrix();
 }
 
+void glframework::draw_ground(){
+    glPushMatrix();
+
+
+
+
+//===============================
+    /*ground texture*/
+    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glPushMatrix();
+    ground -> bind();
+    glScalef(coordinates->ground_dynamic_scale[0],
+            coordinates->ground_dynamic_scale[1],
+            coordinates->ground_dynamic_scale[2]);
+    glTranslatef(-2.5f,-6.7f,-2.5f);
+
+//    glScalef(2.0f,-1.0f,1.0f);
+    glBegin(GL_QUADS);
+    glTexCoord2d(0,0);glVertex3d(0,0,0);
+    glTexCoord2d(1,0);glVertex3d(5,0,0);
+    glTexCoord2d(1,1);glVertex3d(5,0,5);
+    glTexCoord2d(0,1);glVertex3d(0,0,5);
+    glEnd();
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+    glDisable(GL_BLEND);
+/*blade texture end*/
+
+
+    glPopMatrix();
+}
+
 void glframework::draw_robot(){
     glPushMatrix();
     draw_body();
@@ -200,6 +235,13 @@ void glframework::draw_robot(){
         draw_rightarm(); //Note we finish drawing children in this function
         glPopMatrix();
     //============================================
+        /*ground*/
+        glPushMatrix();
+        if(coordinates->drawGround){
+            draw_ground();
+        }
+        glPopMatrix();
+    //============================================
         /*shoulders*/
         glPushMatrix();
         draw_leftShoulder();
@@ -207,6 +249,7 @@ void glframework::draw_robot(){
         glPushMatrix();
         draw_rightShoulder();
         glPopMatrix();
+
     //============================================
     glPopMatrix();
 }

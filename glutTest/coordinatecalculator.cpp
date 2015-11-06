@@ -134,6 +134,10 @@ void CoordinateCalculator::standby(){
         /*right feet*/
         rightfeet_dynamic_translate[index] = 0;
         rightfeet_dynamic_scale[index] = 0;
+    //=====================================
+        ground_dynamic_scale[0] = 1;
+        ground_dynamic_scale[1] = 1;
+        ground_dynamic_scale[2] = 1;
     }
     for(int index = 0; index < 4; index++){
         neck_dynamic_rotate[index] = 0;
@@ -191,14 +195,14 @@ void CoordinateCalculator::setStaticCoor(){
     /*head(neck)*/
     NECK_STATIC_POSITION[0] = 0.0f;
     NECK_STATIC_POSITION[1] = 1.0f;
-    NECK_STATIC_POSITION[2] = 0.0f;
+    NECK_STATIC_POSITION[2] = -0.4f;
     NECK_STATIC_ROTATION[0] = 0.0f;
     NECK_STATIC_ROTATION[1] = 0.0f;
     NECK_STATIC_ROTATION[2] = 0.0f;
     NECK_STATIC_ROTATION[3] = 0.0f;
-    NECK_STATIC_SCALING[0] = 1.0f;
+    NECK_STATIC_SCALING[0] = 0.6f;
     NECK_STATIC_SCALING[1] = 1.0f;
-    NECK_STATIC_SCALING[2] = 1.0f;
+    NECK_STATIC_SCALING[2] = 0.6f;
     NECK_STATIC_ORIGINPOS[0] = 0.0f;
     NECK_STATIC_ORIGINPOS[1] = 1.0f;
     NECK_STATIC_ORIGINPOS[2] = 0.0f;
@@ -598,6 +602,9 @@ void CoordinateCalculator::summonSword(){
             subState = 1;
             sword_dynamic_translate[2] = 10.0f;
             drawSword = true;
+            drawGround = true;
+            ground_dynamic_scale[0] = 0.0f;
+            ground_dynamic_scale[2] = 0.0f;
         }
         break;
     case 1:
@@ -608,7 +615,22 @@ void CoordinateCalculator::summonSword(){
             if(rightfingers_dynamic_rotate[index][0] > - 90)
                 rightfingers_dynamic_rotate[index][0] --;
         }
+        if(ground_dynamic_scale[0] < 10.0f)
+            ground_dynamic_scale[0] += 0.03f;
+        if(ground_dynamic_scale[2] < 10.0f)
+            ground_dynamic_scale[2] += 0.03;
+        if(ground_dynamic_scale[0] >= 10.0f
+                && ground_dynamic_scale[2] >=10.0f)
+            subState = 2;
         break;
-
+    case 2:
+        if(ground_dynamic_scale[0] >= 0.0f)
+            ground_dynamic_scale[0] -= 0.2f;
+        if(ground_dynamic_scale[2] >= 0.0f)
+            ground_dynamic_scale[2] -= 0.2f;
+        if(ground_dynamic_scale[0] <= 0.1f
+                && ground_dynamic_scale[2] <= 0.1f)
+            drawGround = false;
+        break;
     }
 }
