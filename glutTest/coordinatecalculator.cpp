@@ -651,30 +651,63 @@ void CoordinateCalculator::transformation(){
         body_dynamic_rotate[2] = 1.0f;
         body_dynamic_rotate[3] = -0.5f;
         if(body_dynamic_rotate[0] < 350)
-            body_dynamic_rotate[0] += 0.9;
+            body_dynamic_rotate[0] += 1.5;
         if(leftshoulder_dynamic_translate[1] > -2.3f)
-            leftshoulder_dynamic_translate[1] -= 0.03f;
+            leftshoulder_dynamic_translate[1] -= 0.02f;
         if(rightshoulder_dynamic_translate[1] > -2.3f)
-            rightshoulder_dynamic_translate[1] -= 0.03f;
+            rightshoulder_dynamic_translate[1] -= 0.02f;
         leftshoulder_dynamic_rotate[3] = 1.0f;
         rightshoulder_dynamic_rotate[3] = 1.0f;
         if(leftshoulder_dynamic_rotate[0] < 80.0f)
-            leftshoulder_dynamic_rotate[0]++;
+            leftshoulder_dynamic_rotate[0]+= 0.9;
         if(rightshoulder_dynamic_rotate[0] > -80.0f)
-            rightshoulder_dynamic_rotate[0] --;
+            rightshoulder_dynamic_rotate[0] -=0.9;
         if(neck_dynamic_translate[1] > -1.5f)
             neck_dynamic_translate[1] -= 0.03;
 
         if(ph_dynamic_translate[1] < 0.0f)
             ph_dynamic_translate[1] += 0.03;
         if(leftthigh_dynamic_translate[1] < 1.8f)
-            leftthigh_dynamic_translate[1] += 0.03;
+            leftthigh_dynamic_translate[1] += 0.015;
         if(leftshank_dynamic_translate[1] < 1.8f)
-            leftshank_dynamic_translate[1] += 0.03;
+            leftshank_dynamic_translate[1] += 0.015;
         if(rightthigh_dynamic_translate[1] < 1.8f)
-            rightthigh_dynamic_translate[1] += 0.03;
+            rightthigh_dynamic_translate[1] += 0.015;
         if(rightshank_dynamic_translate[1] < 1.8f)
-            rightshank_dynamic_translate[1] += 0.03;
+            rightshank_dynamic_translate[1] += 0.015;
+        if(body_dynamic_rotate[0] >= 350)
+            subState = 2;
+        break;
+    case 2:
+        body_dynamic_rotate[2] = 1.0f;
+        body_dynamic_rotate[3] = -0.5f;
+        if(body_dynamic_rotate[0] < 720)
+            body_dynamic_rotate[0] += 1.5;
+        if(leftshoulder_dynamic_translate[1] <= 0.0f)
+            leftshoulder_dynamic_translate[1] += 0.02f;
+        if(rightshoulder_dynamic_translate[1] <= 0.0f)
+            rightshoulder_dynamic_translate[1] += 0.02f;
+        leftshoulder_dynamic_rotate[3] = 1.0f;
+        rightshoulder_dynamic_rotate[3] = 1.0f;
+        if(leftshoulder_dynamic_rotate[0] >= 0.0f)
+            leftshoulder_dynamic_rotate[0]-= 0.9;
+        if(rightshoulder_dynamic_rotate[0] <= 0.0f)
+            rightshoulder_dynamic_rotate[0] +=0.9;
+        if(neck_dynamic_translate[1] <= 0.0f)
+            neck_dynamic_translate[1] += 0.03;
+
+        if(ph_dynamic_translate[1] > -2.0f)
+            ph_dynamic_translate[1] -= 0.03;
+        if(leftthigh_dynamic_translate[1] >= 0.0f)
+            leftthigh_dynamic_translate[1] -= 0.015;
+        if(leftshank_dynamic_translate[1] >= 0.0f)
+            leftshank_dynamic_translate[1] -= 0.015;
+        if(rightthigh_dynamic_translate[1] >= 0.0f)
+            rightthigh_dynamic_translate[1] -= 0.015;
+        if(rightshank_dynamic_translate[1] >= 0.0f)
+            rightshank_dynamic_translate[1] -= 0.015;
+        if(body_dynamic_rotate[0] >= 720)
+            drawPlaneHead = false;
         break;
     }
 }
