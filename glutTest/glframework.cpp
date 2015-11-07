@@ -28,6 +28,7 @@ void glframework::initializeGL()
     leftwing = LoadGLTextures("./texture/wing.png");
     blade = LoadGLTextures("./texture/sword.png");
     ground = LoadGLTextures("./texture/ground.png");
+    wave = LoadGLTextures("./texture/wave.png");
     timer.start(0.2, this);
 }
 void glframework::paintGL()
@@ -49,10 +50,10 @@ void glframework::paintGL()
         gluLookAt(eyex, eyey, eyez,
                  centerx, centery, centerz,
                   0,1,0);
-      /*std::cout << "eye: " << eyex <<", " << eyey << ", "<< eyez
+      std::cout << "eye: " << eyex <<", " << eyey << ", "<< eyez
              <<std::endl
                <<"center: " << centerx << ", " << centery <<", " << centerz
-           <<std::endl;*/
+           <<std::endl;
     }
 //===========================================
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

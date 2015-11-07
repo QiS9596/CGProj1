@@ -63,6 +63,8 @@ public:
     bool drawFog = false;
     bool drawGround = false;
     bool drawPlaneHead = false;
+
+
     CoordinateCalculator();
     void updateDynamicCoordinate();
 //==================================

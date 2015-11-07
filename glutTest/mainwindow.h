@@ -58,7 +58,6 @@ private slots:
 
     void on_button_yes_clicked();
 
-    void on_angry_clicked();
 
 private:
     Ui::MainWindow *ui;

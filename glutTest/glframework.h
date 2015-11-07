@@ -19,12 +19,12 @@ public:
     void paintGL();
     void resizeGL(int w,int h);
     CoordinateCalculator * coordinates;
-    double eyex = 0,eyey = 0, eyez = 0, centerx = 0, centery = 0, centerz = 0;
+    double eyex = -8,eyey = 6, eyez = -14, centerx = 0, centery = 0, centerz = 0;
 protected:
     void timerEvent(QTimerEvent *e);
 private:
     QOpenGLTexture * leftwing;
-//    QOpenGLTexture * wave;
+    QOpenGLTexture * wave;
     QOpenGLTexture * blade;
     QOpenGLTexture * ground;
     QBasicTimer timer;
