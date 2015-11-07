@@ -23,10 +23,24 @@
          <x>-10</x>
          <y>-10</y>
          <width>235</width>
-         <height>423</height>
+         <height>466</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
+        <item row="9" column="0">
+         <widget class="QPushButton" name="button_walk">
+          <property name="text">
+           <string>walk</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1">
+         <widget class="QPushButton" name="button_yes">
+          <property name="text">
+           <string>yeah</string>
+          </property>
+         </widget>
+        </item>
         <item row="8" column="1">
          <widget class="QPushButton" name="button_run">
           <property name="text">
@@ -153,17 +167,10 @@
           </property>
          </widget>
         </item>
-        <item row="9" column="0">
-         <widget class="QPushButton" name="button_walk">
+        <item row="10" column="0">
+         <widget class="QPushButton" name="angry">
           <property name="text">
-           <string>walk</string>
-          </property>
-         </widget>
-        </item>
-        <item row="9" column="1">
-         <widget class="QPushButton" name="button_yes">
-          <property name="text">
-           <string>yeah</string>
+           <string>angry</string>
           </property>
          </widget>
         </item>
