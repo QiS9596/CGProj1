@@ -42,8 +42,14 @@
  * -----===============----=============------------------------------
  *
  */
+
 const int STANDBY_STATE = 0;
 const int MOVE_HAND_STATE = 1;
+const int YES_POSE_STATE = 2;
+const int RUNING_STATE = 3;
+const int WALK_STATE = 4;
+const int ANGRY_STATE = 5;
+const int TEST = 6;
 const int SUMMON_SWORD_STATE = 1000;
 const int TRANSFORMATION_STATE = 1001;
 
@@ -52,6 +58,7 @@ class CoordinateCalculator
 public:
     int state;
     int subState;
+
     bool drawSword = false;
     bool drawFog = false;
     bool drawGround = false;
@@ -393,6 +400,13 @@ private:
     void moveHand();
     void summonSword();
     void transformation();
+    void yesPose();
+    void runing();
+    void walk();
+    void rightShowStone();
+    void leftShowStone();
+    void angry();
+    void test();
 //signals:
 //public slots:
 };

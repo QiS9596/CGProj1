@@ -119,3 +119,27 @@ void MainWindow::on_button_transfomation_clicked()
     ui->widget_2->coordinates->state = 1001;
     ui->widget_2->update();
 }
+
+void MainWindow::on_button_run_clicked()
+{
+    ui->widget_2->coordinates->subState = 0;
+    ui->widget_2->coordinates->standby();
+    ui->widget_2->coordinates->state = 3;// runing state
+    ui->widget_2->update();
+}
+
+void MainWindow::on_button_walk_clicked()
+{
+    ui->widget_2->coordinates->subState = 0;
+    ui->widget_2->coordinates->standby();
+    ui->widget_2->coordinates->state = 4;// walk state
+    ui->widget_2->update();
+}
+
+void MainWindow::on_button_yes_clicked()
+{
+    ui->widget_2->coordinates->subState = 0;
+    ui->widget_2->coordinates->standby();
+    ui->widget_2->coordinates->state = 2;// yes pose state
+    ui->widget_2->update();
+}

@@ -51,6 +51,13 @@ private slots:
 
     void on_button_transfomation_clicked();
 
+
+    void on_button_run_clicked();
+
+    void on_button_walk_clicked();
+
+    void on_button_yes_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

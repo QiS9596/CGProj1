@@ -14,12 +14,29 @@ void CoordinateCalculator::updateDynamicCoordinate(){
     case MOVE_HAND_STATE:
         moveHand();
         break;
+    case YES_POSE_STATE:
+//        temp = 0;
+        yesPose();
+        break;
+    case RUNING_STATE:
+        runing();
+        break;
+    case WALK_STATE:
+        walk();
+        break;
+    case 5:
+        angry();
+        break;
+    case TEST:
+        test();
+        break;
     case SUMMON_SWORD_STATE:
         summonSword();
         break;
     case TRANSFORMATION_STATE:
         transformation();
         break;
+
     default:
         standby();
     }
@@ -717,4 +734,256 @@ void CoordinateCalculator::transformation(){
         }
         break;
     }
+}
+//=======================================
+void CoordinateCalculator::rightShowStone()
+{
+   rightfingers_dynamic_rotate[0][3] = 1.0f;
+   if(rightfingers_dynamic_rotate[0][0] > -60)
+       rightfingers_dynamic_rotate[0][0] -= 2.0f;
+   rightfingers_dynamic_rotate[1][3] = 1.0f;
+   if(rightfingers_dynamic_rotate[1][0] > -60)
+       rightfingers_dynamic_rotate[1][0] -= 2.0f;
+   rightfingers_dynamic_rotate[2][3] = 1.0f;
+   if(rightfingers_dynamic_rotate[2][0] > -60)
+       rightfingers_dynamic_rotate[2][0] -= 2.0f;
+
+   rightfingerknuckles_dynamic_rotate[0][3] = 1.0f;
+   if(rightfingerknuckles_dynamic_rotate[0][0] > -90)
+       rightfingerknuckles_dynamic_rotate[0][0] -= 2.0f;
+   rightfingerknuckles_dynamic_rotate[1][3] = 1.0f;
+   if(rightfingerknuckles_dynamic_rotate[1][0] > -90)
+       rightfingerknuckles_dynamic_rotate[1][0] -= 2.0f;
+   rightfingerknuckles_dynamic_rotate[2][3] = 1.0f;
+   if(rightfingerknuckles_dynamic_rotate[2][0] > -90)
+       rightfingerknuckles_dynamic_rotate[2][0] -= 2.0f;
+}
+
+void CoordinateCalculator::leftShowStone()
+{
+   leftfingers_dynamic_rotate[0][3] = 1.0f;
+   if(leftfingers_dynamic_rotate[0][0] < 60)
+       leftfingers_dynamic_rotate[0][0] += 2.0f;
+   leftfingers_dynamic_rotate[1][3] = 1.0f;
+   if(leftfingers_dynamic_rotate[1][0] < 60)
+       leftfingers_dynamic_rotate[1][0] += 2.0f;
+   leftfingers_dynamic_rotate[2][3] = 1.0f;
+   if(leftfingers_dynamic_rotate[2][0] < 60)
+       leftfingers_dynamic_rotate[2][0] += 2.0f;
+
+   leftfingerknuckles_dynamic_rotate[0][3] = 1.0f;
+   if(leftfingerknuckles_dynamic_rotate[0][0] <  90)
+       leftfingerknuckles_dynamic_rotate[0][0] += 2.0f;
+   leftfingerknuckles_dynamic_rotate[1][3] = 1.0f;
+   if(leftfingerknuckles_dynamic_rotate[1][0] <  90)
+       leftfingerknuckles_dynamic_rotate[1][0] += 2.0f;
+   leftfingerknuckles_dynamic_rotate[2][3] = 1.0f;
+   if(leftfingerknuckles_dynamic_rotate[2][0] <  90)
+       leftfingerknuckles_dynamic_rotate[2][0] += 2.0f;
+}
+
+void CoordinateCalculator::yesPose()
+{
+    std::cout << "yes pose function called" << std::endl;
+    if(subState == 1 && leftarm_dynamic_rotate[0] != -30)
+        subState = 0;
+
+    leftarm_dynamic_rotate[3] = 1.0f;
+    if(leftarm_dynamic_rotate[0] > -30)
+        leftarm_dynamic_rotate[0] -= 1.0f;
+    leftforearm_dynamic_rotate[3] = 1.0f;
+    if(leftforearm_dynamic_rotate[0] < 60)
+        leftforearm_dynamic_rotate[0] += 2.0f;
+
+    if(rightarm_dynamic_rotate[0] > -90 && subState == 0)
+    {
+       rightarm_dynamic_rotate[1] = 1.0f;
+       if(rightarm_dynamic_rotate[0] <  90)
+           rightarm_dynamic_rotate[0] += 2.0f;
+       rightforearm_dynamic_rotate[1] = 1.0f;
+       if(rightforearm_dynamic_rotate[0] <  90)
+           rightforearm_dynamic_rotate[0] += 2.0f;
+     }
+
+    if(righthand_dynamic_rotate[0] <  90 && subState == 0)
+    {
+       righthand_dynamic_rotate[2] = 1.0f;
+       if(righthand_dynamic_rotate[0] > -90)
+           righthand_dynamic_rotate[0] -= 2.0f;
+    }
+
+    rightShowStone();
+
+    if(rightarm_dynamic_rotate[0] ==  90)
+        subState = 1;
+
+    if(subState == 1)
+    {
+        rightarm_dynamic_rotate[1] = 1.0f;
+        if(rightarm_dynamic_rotate[0] > -20)
+            rightarm_dynamic_rotate[0] -= 2.0f;
+        rightforearm_dynamic_rotate[1] = 1.0f;
+        if(rightforearm_dynamic_rotate[0] < 120)
+            rightforearm_dynamic_rotate[0] += 1.0f;
+    }
+}
+
+void CoordinateCalculator::runing()
+{
+    std::cout << "runing function called" << std::endl;
+    rightShowStone();
+    leftShowStone();
+
+//    if(rightarm_dynamic_rotate[0] < 60)
+//    {
+//        rightarm_dynamic_rotate[2] = 1.0f;
+//        if(rightarm_dynamic_rotate[0] < 60)
+//            rightarm_dynamic_rotate[0] += 2.5f;
+//    }
+
+    if(rightarm_dynamic_rotate[0] < 90 && leftarm_dynamic_rotate[0] > -90 && subState == 0)
+    {
+        rightarm_dynamic_rotate[1] = 1.0f;
+        if(rightarm_dynamic_rotate[0] < 90)
+            rightarm_dynamic_rotate[0] += 3.0f;
+        rightforearm_dynamic_rotate[1] = 1.0f;
+        if(rightforearm_dynamic_rotate[0] <  90)
+           rightforearm_dynamic_rotate[0] += 3.0f;
+        leftarm_dynamic_rotate[1] = 1.0f;
+        if(leftarm_dynamic_rotate[0] > -90)
+            leftarm_dynamic_rotate[0] -= 3.0f;
+        leftforearm_dynamic_rotate[1] = 1.0f;
+        if(leftforearm_dynamic_rotate[0] <  90)
+          leftforearm_dynamic_rotate[0] += 3.0f;
+
+
+        rightthigh_dynamic_rotate[1] = 1.0f;
+        if(rightthigh_dynamic_rotate[0] <  60)
+            rightthigh_dynamic_rotate[0] += 1.8f;
+        rightshank_dynamic_rotate[1] = 1.0f;
+        if(rightshank_dynamic_rotate[0] > -60)
+            rightshank_dynamic_rotate[0] -= 1.8f;
+        leftthigh_dynamic_rotate[1] = 1.0f;
+        if(leftthigh_dynamic_rotate[0] > -60)
+            leftthigh_dynamic_rotate[0] -= 1.8f;
+        leftshank_dynamic_rotate[1] = 1.0f;
+        if(leftshank_dynamic_rotate[0] > -60)
+            leftshank_dynamic_rotate[0] -= 1.8f;
+    }
+
+    if(rightarm_dynamic_rotate[0] > -90 && leftarm_dynamic_rotate[0] < 90 && subState == 1)
+    {
+        rightarm_dynamic_rotate[1] = 1.0f;
+        if(rightarm_dynamic_rotate[0] > -90)
+            rightarm_dynamic_rotate[0] -= 3.0f;
+        rightforearm_dynamic_rotate[1] = 1.0f;
+        if(rightforearm_dynamic_rotate[0] <  90)
+            rightforearm_dynamic_rotate[0] += 3.0f;
+        leftarm_dynamic_rotate[1] = 1.0f;
+        if(leftarm_dynamic_rotate[0] < 90)
+            leftarm_dynamic_rotate[0] += 3.0f;
+        leftforearm_dynamic_rotate[1] = 1.0f;
+        if(leftforearm_dynamic_rotate[0] <  90)
+            leftforearm_dynamic_rotate[0] += 3.0f;
+
+
+        rightthigh_dynamic_rotate[1] = 1.0f;
+        if(rightthigh_dynamic_rotate[0] > -60)
+            rightthigh_dynamic_rotate[0] -= 1.8f;
+        rightshank_dynamic_rotate[1] = 1.0f;
+        if(rightshank_dynamic_rotate[0] > -60)
+            rightshank_dynamic_rotate[0] -= 1.8f;
+        leftthigh_dynamic_rotate[1] = 1.0f;
+        if(leftthigh_dynamic_rotate[0] <  60)
+            leftthigh_dynamic_rotate[0] += 1.8f;
+        leftshank_dynamic_rotate[1] = 1.0f;
+        if(leftshank_dynamic_rotate[0] > -60)
+            leftshank_dynamic_rotate[0] -= 1.8f;
+    }
+
+    if(     rightarm_dynamic_rotate[0] == -90 && leftarm_dynamic_rotate[0] ==  90 && subState == 1)
+        subState = 0;
+    else if(rightarm_dynamic_rotate[0] ==  90 && leftarm_dynamic_rotate[0] == -90 && subState == 0)
+        subState = 1;
+}
+
+void CoordinateCalculator::walk()
+{
+    std::cout << "walk function called" << std::endl;
+    if(rightarm_dynamic_rotate[0] < 60 && leftarm_dynamic_rotate[0] > -60 && subState == 0)
+    {
+        rightarm_dynamic_rotate[1] = 1.0f;
+        if(rightarm_dynamic_rotate[0] < 20)
+            rightarm_dynamic_rotate[0] += 0.5f;
+        rightforearm_dynamic_rotate[1] = 1.0f;
+        if(rightforearm_dynamic_rotate[0] <  20)
+           rightforearm_dynamic_rotate[0] += 0.5f;
+        leftarm_dynamic_rotate[1] = 1.0f;
+        if(leftarm_dynamic_rotate[0] > -20)
+            leftarm_dynamic_rotate[0] -= 0.5f;
+        leftforearm_dynamic_rotate[1] = 1.0f;
+        if(leftforearm_dynamic_rotate[0] <  20)
+          leftforearm_dynamic_rotate[0] += 0.5f;
+
+
+        rightthigh_dynamic_rotate[1] = 1.0f;
+        if(rightthigh_dynamic_rotate[0] <  30)
+            rightthigh_dynamic_rotate[0] += 0.8f;
+        rightshank_dynamic_rotate[1] = 1.0f;
+        if(rightshank_dynamic_rotate[0] > -30)
+            rightshank_dynamic_rotate[0] -= 0.8f;
+        leftthigh_dynamic_rotate[1] = 1.0f;
+        if(leftthigh_dynamic_rotate[0] > -30)
+            leftthigh_dynamic_rotate[0] -= 0.8f;
+        leftshank_dynamic_rotate[1] = 1.0f;
+        if(leftshank_dynamic_rotate[0] < 0)
+            leftshank_dynamic_rotate[0] += 0.8f;
+    }
+
+    if(subState == 1)
+    {
+        rightarm_dynamic_rotate[1] = 1.0f;
+        if(rightarm_dynamic_rotate[0] > -20)
+            rightarm_dynamic_rotate[0] -= 0.5f;
+        rightforearm_dynamic_rotate[1] = 1.0f;
+        if(rightforearm_dynamic_rotate[0] <  20)
+            rightforearm_dynamic_rotate[0] += 0.5f;
+        leftarm_dynamic_rotate[1] = 1.0f;
+        if(leftarm_dynamic_rotate[0] < 20)
+            leftarm_dynamic_rotate[0] += 0.5f;
+        leftforearm_dynamic_rotate[1] = 1.0f;
+        if(leftforearm_dynamic_rotate[0] <  20)
+            leftforearm_dynamic_rotate[0] += 0.5f;
+
+        rightshank_dynamic_rotate[1] = 1.0f;
+        if(rightshank_dynamic_rotate[0] < 0)
+            rightshank_dynamic_rotate[0] += 0.8f;
+        rightthigh_dynamic_rotate[1] = 1.0f;
+        if(rightthigh_dynamic_rotate[0] > -30)
+            rightthigh_dynamic_rotate[0] -= 0.8f;
+        leftthigh_dynamic_rotate[1] = 1.0f;
+        if(leftthigh_dynamic_rotate[0] <  30)
+            leftthigh_dynamic_rotate[0] += 0.8f;
+        leftshank_dynamic_rotate[1] = 1.0f;
+        if(leftshank_dynamic_rotate[0] > -30)
+            leftshank_dynamic_rotate[0] -= 0.8f;
+    }
+
+    if(     rightarm_dynamic_rotate[0] ==  20 && leftarm_dynamic_rotate[0] == -20 && subState == 0)
+        subState = 1;
+    else if(rightarm_dynamic_rotate[0] == -20 && leftarm_dynamic_rotate[0] ==  20 && subState == 1)
+        subState = 0;
+}
+
+void CoordinateCalculator::angry()
+{
+    std::cout << "angry function called" << std::endl;
+    rightarm_dynamic_rotate[2] = 1.0f;
+    if(rightarm_dynamic_rotate[0] < 0)
+        rightarm_dynamic_rotate[0] += 0.8f;
+}
+
+void CoordinateCalculator::test()
+{
+    std::cout << "TEST~" << std::endl;
 }
